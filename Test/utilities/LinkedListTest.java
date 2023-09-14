@@ -6,9 +6,22 @@ import org.junit.jupiter.api.Test;
 
 class LinkedListTest {
 
+	
+	
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testAddToFront() {
+		LinkedList list = new LinkedList();
+		
+		list.addToFront(5);
+		list.addToFront(10);
+		
+		assertTrue(list._size == 2);
+		
+		//list.clear();
+		
+		assertTrue(list.contains(10));
+		
+		
 	}
 
 }
