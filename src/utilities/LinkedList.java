@@ -49,6 +49,10 @@ public class LinkedList<T> {
 	
 	public boolean contains(T target) {
 		
+		if (isEmpty() == true) {
+			return false;
+		}
+		
 		for(Node n = _head._next; n!= _tail; n = n._next) {
 			if(n._data.equals(target)) {
 				return true;
@@ -58,6 +62,10 @@ public class LinkedList<T> {
 	}
 	
 	private Node previous(T target){
+		
+		if (isEmpty() == true) {
+			return null;
+		}
 		
 		Node prev = _head;
 		
@@ -73,6 +81,10 @@ public class LinkedList<T> {
 	}
 	
 	public boolean remove(T target) {
+		
+		if (isEmpty() == true) {
+			return false;
+		} 
 		
 		for(Node n = _head._next; n!= _tail; n = n._next) {
 			if(n._data == target) {
@@ -104,6 +116,11 @@ public class LinkedList<T> {
 	}
 	
 	public String toString() {
+		
+		if (isEmpty() == true) {
+			return "List is empty";
+		}
+		
 		String result = "";
 		Node current = _head._next;
 		while(current != _tail) {
@@ -113,4 +130,15 @@ public class LinkedList<T> {
 		}
 		return result;
 	}
+	
+	public void reverse() {
+//		return reverse(n._next);
+	}
+	
+//	private void reverse() {
+	
+	//Check if the list is empty
+	
+	
+//	}
 }
