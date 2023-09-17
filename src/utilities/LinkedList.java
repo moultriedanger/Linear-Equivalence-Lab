@@ -8,7 +8,7 @@ public class LinkedList<T> {
 		
 		public Node(T data, Node next){
 			this._data = data;
-			next = null; 
+			this._next = next; 
 		}
 	}
 
@@ -25,9 +25,9 @@ public class LinkedList<T> {
 		this._size = 0;
 	}
 	
-	///Methods
+	///Change this
 	public boolean isEmpty() {
-		return _head._next == _tail;
+		return _size == 0;
 	}
 	
 	public void clear() {
@@ -40,7 +40,6 @@ public class LinkedList<T> {
 	}
 	
 	public void addToFront(T element) {
-		//Create node
 		Node n = new Node(element, _head._next);
 		
 		_head._next = n;
@@ -49,47 +48,69 @@ public class LinkedList<T> {
 	}
 	
 	public boolean contains(T target) {
+		
 		for(Node n = _head._next; n!= _tail; n = n._next) {
-			if(n._data == target) {
+			if(n._data.equals(target)) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-//	private Node previous(Node target){
-//		
-//		Node prev = _head;
-//		
-//		for(Node n = _head._next; n!= _tail; n = n._next) {
-//			
-//			if(n.equals(target)) {
-//				return prev;
-//			}
-//			//Increase previous
-//			prev = prev._next;
-//		}
-//		return null;
-//	}
-	
-	public void remove(Node target) {
+	private Node previous(T target){
+		
+		Node prev = _head;
+		
 		for(Node n = _head._next; n!= _tail; n = n._next) {
-			if(n.equals(target)) {
-				previous(target)._next = target._next;
+			
+			if(n._data == target) {
+				return prev;
+			}
+			//Increase previous
+			prev = prev._next;
+		}
+		return null;
+	}
+	
+	public boolean remove(T target) {
+		
+		for(Node n = _head._next; n!= _tail; n = n._next) {
+			if(n._data == target) {
+				
+				previous(n._data)._next = n._next;
+				n._next = null;
 				_size --;
+				return true;
 			}
 		}
-	}
-	
-	//Work
-	public String toString() {
-		String somestring = "";
-		for (Node n = _head._next; n == _tail; n = n._next) {
-			somestring += n._data.toString();
-		}
-		return somestring;
-		
+		return false;
 	}
 
+	private Node last() {
+		Node current = _head;
+		
+		while(current._next != _tail) {
+			
+			current = current._next;
+		}
+		return current;
+	}
 	
+	public void addToBack(T element) {
+		Node n = new Node(element, _tail);
+		
+		last()._next = n;
+		_size ++;
+	}
+	
+	public String toString() {
+		String result = "";
+		Node current = _head._next;
+		while(current != _tail) {
+			result += current._data + " ";
+			
+			current = current._next;
+		}
+		return result;
+	}
 }
