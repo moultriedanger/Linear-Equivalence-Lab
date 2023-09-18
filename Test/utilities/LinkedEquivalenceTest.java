@@ -33,6 +33,7 @@ class LinkedEquivalenceTest {
 	}
 	
 	@Test
+
 	void testContains() {
 		//Test comparator
 				Comparator<Integer> c = new Comparator<Integer>()
@@ -57,6 +58,36 @@ class LinkedEquivalenceTest {
 		
 		//Testing if an element that is not equivalent with the canonical does not exist in the list
 		assertFalse(list.contains(5));
+	}
+	void testRemove() {
+		Comparator<Integer> c = new Comparator<Integer>()
+		 {
+		 // All even integers are 'equivalent'
+		// All odd integers are 'equivalent'
+		public int compare(Integer x, Integer y)
+		 { return x % 2 == y % 2 ? 0 : 1; }
+		 };
+		 
+		LinkedEquivalenceClass l = new LinkedEquivalenceClass(c);
+		
+		
+		l.add(2);
+		
+		l.add(8);
+		l.add(10);
+				
+		assertTrue(l.size() == 3);
+		
+		l.removeCanonical(10);
+		
+		assertTrue(l.size() == 3);
+		
+		l.removeCanonical(2);
+		assertTrue(l.size() == 2);
+		
+		//Test for removal on empty list!!
+	}
+	
 }
 	@Test
 	void testBelongs() {

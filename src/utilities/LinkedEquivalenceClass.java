@@ -64,5 +64,23 @@ public class LinkedEquivalenceClass<T>{
 		return false;
 	}
 	
+	public boolean remove(T element) {
+		if(element == _canonical) {
+			return false;
+		}
+		return _rest.remove(element);
+	}
+	
+	public boolean removeCanonical(T element) {
+		
+		if(_canonical == null || element != _canonical) {
+			return false;
+		}
+		_canonical = null;
+		return true;
+	}
+	
+	
+	
 
 }
