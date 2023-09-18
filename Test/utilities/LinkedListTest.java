@@ -76,10 +76,12 @@ class LinkedListTest {
 		//Adding elements to a list
 		list.addToFront(5);
 		list.addToFront(10);
+		list.addToBack(50);
 		
 		//Testing the contains(T target) method returns true for the specific elements existing in the list
 		assertTrue(list.contains(10));
 		assertTrue(list.contains(5));
+		assertTrue(list.contains(50));
 		
 		//Testing the contains(T target) method returns false for when an element does not exist in the list
 		assertFalse(list.contains(3));

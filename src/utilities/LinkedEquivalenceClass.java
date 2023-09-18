@@ -19,20 +19,25 @@ public class LinkedEquivalenceClass<T>{
 	}
 	
 	public boolean isEmpty() {
-		return _rest.isEmpty();
+		return _canonical == null && _rest.isEmpty();
 	}
 	
 	public void clear() {
+		_canonical = null;
 		_rest.clear();
 	}
 	
 	public void clearNonCanonical() {
-		
-		
+		_rest.clear();
 	}
 	
 	public int size() {
-		return _rest.size();
+		int canonical_val = 0;
+		
+		if(_canonical != null) {
+			canonical_val = 1;
+		}
+		return _rest.size() + canonical_val;
 	}
 	
 	public boolean add(T element) {
@@ -41,7 +46,7 @@ public class LinkedEquivalenceClass<T>{
 			_canonical = element;
 			return true;
 		}
-		else if(_comparator.compare(_canonical, element)==0) {
+		else if(_comparator.compare(_canonical, element) == 0) {
 			_rest.addToFront(element);
 			return true;
 		}
