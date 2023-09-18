@@ -31,6 +31,17 @@ public class LinkedEquivalenceClass<T>{
 		_rest.clear();
 	}
 	
+	public boolean contains(T target) {
+		return _rest.contains(target);
+	}
+	
+	public boolean belongs(T target) {
+		if (_comparator.compare(this._canonical, target)==0)
+			return true;
+		
+		return false;
+	}
+	
 	public int size() {
 		int canonical_val = 0;
 		
