@@ -14,6 +14,7 @@ class LinkedListTest {
 		//Testing if isEmpty() method returns true when list has no elements
 		assertTrue(list.isEmpty());
 		
+
 		//Creating a list
 		LinkedList list2 = new LinkedList();
 		
@@ -132,7 +133,11 @@ class LinkedListTest {
 		list.addToBack(12);
 		list.addToBack(5);
 		
+
 		//Testing if the list contains the added elements
+
+		//System.out.println(list.toString());
+		
 		assertTrue(list.size() == 3);
 		
 		//Testing if the elements are in an expected order set
@@ -170,6 +175,23 @@ class LinkedListTest {
 		LinkedList emptyList = new LinkedList();
 		//Testing for when list is empty, a message saying the list is empty will display
 		assertEquals("List is empty", emptyList.toString());
+	}
+	
+	@Test
+	
+	void reverseTest() {
+		LinkedList list = new LinkedList();
+		
+		
+		list.addToBack(10);
+		list.addToBack(12);
+		list.addToBack(15);
+		
+		list.reverse();
+		
+		//System.out.print("rev" + list.toString());
+		
+		
 	}
 
 }

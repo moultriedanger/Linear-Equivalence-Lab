@@ -7,8 +7,8 @@ public class LinkedList<T> {
 		private Node _next;
 		
 		public Node(T data, Node next){
-			this._data = data;
-			this._next = next; 
+			_data = data;
+			_next = next; 
 		}
 	}
 
@@ -22,12 +22,11 @@ public class LinkedList<T> {
 		_tail = new Node(null, null);
 		_head = new Node(null, _tail);
 		
-		this._size = 0;
+		_size = 0;
 	}
 	
-	///Change this
 	public boolean isEmpty() {
-		return _size == 0;
+		return _head._next.equals(_tail);
 	}
 	
 	public void clear() {
@@ -132,13 +131,16 @@ public class LinkedList<T> {
 	}
 	
 	public void reverse() {
-//		return reverse(n._next);
+
+
+		Node current = last();
+		
+		for(Node n = _head; n._next == _tail; n = n._next ) {
+			
+			n._next = current;
+			
+			current = previous(current._data);
+		}
 	}
-	
-//	private void reverse() {
-	
-	//Check if the list is empty
-	
-	
-//	}
+
 }
