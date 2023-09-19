@@ -42,48 +42,40 @@ public class LinkedList<T> {
 		Node n = new Node(element, _head._next);
 		
 		_head._next = n;
-		
 		_size ++;
 	}
 	
 	public boolean contains(T target) {
 		
-		if (isEmpty() == true) {
-			return false;
-		}
+		if (isEmpty()) return false;
 		
+		//Find node in linked list equal to target
 		for(Node n = _head._next; n!= _tail; n = n._next) {
-			if(n._data.equals(target)) {
-				return true;
-			}
+			if(n._data.equals(target)) return true;
 		}
 		return false;
 	}
 	
 	private Node previous(T target){
+		//Check if empty and if the list contains target
+		if (isEmpty() || !this.contains(target)) return null;
 		
-		if (isEmpty() == true) {
-			return null;
-		}
-		
+		//Store the previous
 		Node prev = _head;
 		
 		for(Node n = _head._next; n!= _tail; n = n._next) {
-			
-			if(n._data == target) {
+			if(n._data.equals(target)) {
 				return prev;
 			}
-			//Increase previous
+			//Increase previous if not found
 			prev = prev._next;
 		}
 		return null;
 	}
-	
+	//Too long
 	public boolean remove(T target) {
 		
-		if (isEmpty() == true) {
-			return false;
-		} 
+		if (isEmpty()) return false;
 		
 		for(Node n = _head._next; n!= _tail; n = n._next) {
 			if(n._data == target) {
@@ -116,9 +108,7 @@ public class LinkedList<T> {
 	
 	public String toString() {
 		
-		if (isEmpty() == true) {
-			return "List is empty";
-		}
+		if (isEmpty()) return "";
 		
 		String result = "";
 		Node current = _head._next;
@@ -131,7 +121,6 @@ public class LinkedList<T> {
 	}
 	
 	public void reverse() {
-
 
 		Node current = last();
 		

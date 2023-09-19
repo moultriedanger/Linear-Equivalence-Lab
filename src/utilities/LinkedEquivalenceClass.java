@@ -14,6 +14,7 @@ public class LinkedEquivalenceClass<T>{
 		_rest = new LinkedList<T>();
 	}
 	
+	//Get canonical
 	public T canonical() {
 		return _canonical;
 	}
@@ -31,17 +32,7 @@ public class LinkedEquivalenceClass<T>{
 		_rest.clear();
 	}
 	
-	public boolean contains(T target) {
-		return _rest.contains(target);
-	}
-	
-	public boolean belongs(T target) {
-		if (_comparator.compare(this._canonical, target)==0)
-			return true;
-		
-		return false;
-	}
-	
+	//Moultrie
 	public int size() {
 		int canonical_val = 0;
 		
@@ -64,6 +55,19 @@ public class LinkedEquivalenceClass<T>{
 		return false;
 	}
 	
+	public boolean contains(T target) {
+		return _rest.contains(target);
+	}
+	
+	//Does cannonical need to equal target?
+	public boolean belongs(T target) {
+		//Check 
+		if(_canonical.equals(target) && _comparator.compare(this._canonical, target)==0) return true;
+	
+		return false;
+		
+	}
+	
 	public boolean remove(T element) {
 		if(element == _canonical) {
 			return false;
@@ -80,7 +84,29 @@ public class LinkedEquivalenceClass<T>{
 		return true;
 	}
 	
+	public boolean demoteAndSetCanonical(T element) {
+		//Add if the list is empty
+		if (this.isEmpty()) {
+			this.add(element);
+			return true;
+		}
+		else if(_comparator.compare(_canonical, element) == 0) {
+			_canonical = element;
+			return true;
+		}
+		return false;
+	}
 	
-	
-
+	public String toString() {
+		
+		if(isEmpty()) return "";
+		
+		String result = "";
+		 
+		result += _canonical + " | ";
+		
+		result += _rest.toString();
+		
+		return result;
+	}
 }
