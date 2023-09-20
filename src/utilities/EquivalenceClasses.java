@@ -11,12 +11,7 @@ public class EquivalenceClasses<T> {
 		_comparator = comparator;
 		//_classes = new List<LinkedEquivalenceClass>;
 				
-		
-		
-		
 	}
-	
-	
 	
 	
 	

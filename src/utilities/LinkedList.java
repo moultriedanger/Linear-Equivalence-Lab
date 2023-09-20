@@ -106,30 +106,50 @@ public class LinkedList<T> {
 		_size ++;
 	}
 	
+//	public String toString() {
+//		
+//		if (isEmpty()) return "";
+//		
+//		String result = "";
+//		Node current = _head._next;
+//		while(current != _tail) {
+//			result += current._data + " ";
+//			
+//			current = current._next;
+//		}
+//		return result;
+//	}
+	
 	public String toString() {
-		
-		if (isEmpty()) return "";
-		
-		String result = "";
-		Node current = _head._next;
-		while(current != _tail) {
-			result += current._data + " ";
-			
-			current = current._next;
-		}
-		return result;
+		return toString(_head._next);
 	}
 	
-	public void reverse() {
-
-		Node current = last();
+	private String toString(Node n) {
+		String result = "";
 		
-		for(Node n = _head; n._next == _tail; n = n._next ) {
-			
-			n._next = current;
-			
-			current = previous(current._data);
+		if(n.equals(_tail)) {
+			return "";
 		}
+		result += n._data + " ";
+
+		return result + toString(n._next);
 	}
+	
+	//Node current = last();
+//	
+//	for(Node n = _head; n._next == _tail; n = n._next ) {
+//		
+//		n._next = current;
+//		
+//		current = previous(current._data);
+//	}
+	
+	
+	public void reverse() {
+		
+		
+	}
+	
+	private void 
 
 }
