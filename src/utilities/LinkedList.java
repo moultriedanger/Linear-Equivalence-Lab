@@ -3,12 +3,12 @@ package utilities;
 public class LinkedList<T> {
 	
 	private class Node{
-		private T data;
-		private Node next;
+		private T _data;
+		private Node _next;
 		
 		public Node(T data, Node next){
-			this.data = data;
-			next = null; 
+			_data = data;
+			_next = next; 
 		}
 	}
 
@@ -22,16 +22,15 @@ public class LinkedList<T> {
 		_tail = new Node(null, null);
 		_head = new Node(null, _tail);
 		
-		this._size = 0;
+		_size = 0;
 	}
 	
-	///Methods
 	public boolean isEmpty() {
-		return _head.next == _tail;
+		return _head._next.equals(_tail);
 	}
 	
 	public void clear() {
-		this._head.next =_tail;
+		this._head._next =_tail;
 		this._size = 0;
 	}
 
@@ -39,51 +38,89 @@ public class LinkedList<T> {
 		return this._size;
 	}
 	
-	public void addToFront(Node element) {
-		//Get the heads next
-		Node temp = this._head.next;
+	public void addToFront(T element) {
+		Node n = new Node(element, _head._next);
 		
-		this._head.next = element;
-		
-		//Set new elements next to heads next next 
-		element.next = temp;
-		this._size ++;
+		//Make the head point to new node
+		_head._next = n;
+		_size ++;
 	}
 	
-	public boolean contains(Node target) {
+	public boolean contains(T target) {
+		if (isEmpty()) return false;
 		
-		for(Node n = _head.next; n!= _tail; n = n.next) {
-			if(n.equals(target)) return true;
+		//Find node in linked list equal to target
+		for(Node n = _head._next; n!= _tail; n = n._next) {
+			if(n._data.equals(target)) return true;
 		}
 		return false;
 	}
 	
-	private Node previous(Node target){
+	public Node previous(T target){
 		
+		//Check if empty and if the list contains target
+		if (isEmpty() || !this.contains(target)) return null;
+		
+		//Store the previous
 		Node prev = _head;
 		
-		for(Node n = _head.next; n!= _tail; n = n.next) {
-			
-			if(n.equals(target)) {
+		for(Node n = _head._next; n!= _tail; n = n._next) {
+			if(n._data.equals(target)) {
 				return prev;
 			}
-			//Increase previous
-			prev = prev.next;
+			//Increase previous if not found
+			prev = prev._next;
 		}
 		return null;
 	}
 	
-	public void remove(Node target) {
-		for(Node n = _head.next; n!= _tail; n = n.next) {
-			if(n.equals(target)) {
-				
-			}
-		}
+	public boolean remove(T target) {
 		
+		if (isEmpty()) return false;
+		if (!contains(target)) return false;
+		
+		
+		Node n = previous(target);
+		//Set n to targets next. Garbage collect
+		n._next = n._next._next;
+		
+		_size --;
+		return true;
+	}
+
+	private Node last() {
+		Node current = _head;
+		
+		while(current._next != _tail) {
+			
+			current = current._next;
+		}
+		return current;
 	}
 	
+	public void addToBack(T element) {
+		Node n = new Node(element, _tail);
+		//Set previous n _next to n
+		last()._next = n;
+		_size ++;
+	}
 	
+	public String toString() {
+		if (isEmpty()) return "";
+		
+		String result = "";
+		Node current = _head._next;
+		
+		while(current != _tail) {
+			//Build string
+			result += current._data + " ";
+			
+			current = current._next;
+		}
+		return result.substring(0, result.length()-1);
+	}
+	
+	public void reverse() {
+	}
 
-	
-	
 }
