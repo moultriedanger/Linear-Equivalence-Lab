@@ -1,5 +1,6 @@
 package utilities;
 
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -13,28 +14,25 @@ public class EquivalenceClasses<T> {
 		_classes = new ArrayList<LinkedEquivalenceClass<T>>();
 	}
 	
-	public boolean add(T element){
+	public boolean add(LinkedEquivalenceClass<T> element){
 		
 		if (element == null) {
 			return false;
 		}
-		
-		if (indexOfClass(element) == -1) {
-			LinkedEquivalenceClass<T> c = new LinkedEquivalenceClass<T>(_comparator);
-			c.add(element);
-			return true;
-		}
-		int i = indexOfClass(element);
-		
-		_classes.get(i).add(element);
+		_classes.add(element);
 		
 		return true;
 	}
 	
-//	public boolean contains(T target) {
-//		
-//		//return true
-//	}
+	//W.M
+	public boolean contains(T target) {
+		for(LinkedEquivalenceClass<T> equivalenceClass :_classes) {
+			if(equivalenceClass.contains(target)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public int size() {
 		return _classes.size();
@@ -54,12 +52,8 @@ public class EquivalenceClasses<T> {
 		String result = "";
 		
 		for(LinkedEquivalenceClass l : _classes) {
-			result += l.toString();
+			result += l.toString() + ", ";
 		}
 		return result;
 	}
-	
-	
-	
-
 }

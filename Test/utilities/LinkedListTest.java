@@ -187,12 +187,10 @@ class LinkedListTest {
 		list.addToBack(10);
 		list.addToBack(12);
 		list.addToBack(15);
-		
+		System.out.println(list.toString());
 		list.reverse();
 		
-		//System.out.print("rev" + list.toString());
-		
-		
+		System.out.println(list.toString());
 	}
 
 }

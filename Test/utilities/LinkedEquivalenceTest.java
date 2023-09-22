@@ -59,14 +59,14 @@ class LinkedEquivalenceTest {
 		LinkedEquivalenceClass l = new LinkedEquivalenceClass(c);
 		
 		assertTrue(l.isEmpty());
-		l.add(2);
+		l.add(7);
 		
 		assertTrue(l.size() == 1);
 		
-		l.add(8);
-		l.add(10);
+		l.add(15);
+		l.add(12);
 		
-		assertTrue(l.size() == 3);
+		assertTrue(l.size() == 2);
 	}
 	
 	@Test
@@ -128,7 +128,7 @@ class LinkedEquivalenceTest {
 	
 	@Test
 	void demoteAndSetCanonical() {
-		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8,c);
+		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8, c);
 		
 		assertEquals("2 | 8 6 4", list.toString());
 	

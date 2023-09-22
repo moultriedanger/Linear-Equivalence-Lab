@@ -121,6 +121,20 @@ public class LinkedList<T> {
 	}
 	
 	public void reverse() {
+		reverse(_head._next, last(), 0);
 	}
+		
+	public void reverse(Node first, Node last, int i) {
+		if(!(i ==_size/2)) {
+			T val1 = last._data;
+			T val2 = first._data;
+			
+			last._data = val2;
+			first._data = val1;
+			
+			reverse(first._next, previous(last._data), ++i);
+		}
+	}
+	
 
 }
