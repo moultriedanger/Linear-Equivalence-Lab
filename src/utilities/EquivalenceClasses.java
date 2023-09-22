@@ -20,8 +20,9 @@ public class EquivalenceClasses<T> {
 		}
 		
 		if (indexOfClass(element) == -1) {
-			LinkedEquivalenceClass c = new LinkedEquivalenceClass(_comparator);
+			LinkedEquivalenceClass<T> c = new LinkedEquivalenceClass<T>(_comparator);
 			c.add(element);
+			return true;
 		}
 		int i = indexOfClass(element);
 		

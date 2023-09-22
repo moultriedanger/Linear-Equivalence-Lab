@@ -13,26 +13,17 @@ class LinkedEquivalenceTest {
 	 // All even integers are 'equivalent'
 	// All odd integers are 'equivalent'
 	public int compare(Integer x, Integer y)
-	 { return x % 7 == y % 7 ? 0 : 1; }
+	 { return x % 2 == y % 2 ? 0 : 1; }
 	 };
 	 
-	 Comparator<Integer> c1 = new Comparator<Integer>()
+	Comparator<Integer> c1 = new Comparator<Integer>()
 	 {
-	 // All even integers are 'equivalent'
-	// All odd integers are 'equivalent'
+	//Checks if greater than 5
 	public int compare(Integer x, Integer y)
 	 { return x >=5 == y>= 5 ? 0 : 1; }
 	 };
 
-	public LinkedEquivalenceClass listBuilder(int c1, int x1, int x2, int x3) {
-		
-		Comparator<Integer> c = new Comparator<Integer>()
-		 {
-		 // All even integers are 'equivalent'
-		// All odd integers are 'equivalent'
-		public int compare(Integer x, Integer y)
-		 { return x % 2 == y % 2 ? 0 : 1; }
-		 };
+	public LinkedEquivalenceClass listBuilder(int c1, int x1, int x2, int x3, Comparator<Integer> c) {
 		
 		LinkedEquivalenceClass l = new LinkedEquivalenceClass(c);
 		l.add(c1);
@@ -45,7 +36,7 @@ class LinkedEquivalenceTest {
 	
 	@Test
 	void testClear() {
-		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8);
+		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8, c);
 		
 		assertEquals("2 | 8 6 4", list.toString());
 		
@@ -82,7 +73,7 @@ class LinkedEquivalenceTest {
 
 	void testContains() {
 		
-		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8);
+		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8,c);
 		
 		//Testing if the canonical element is not in the list AND if the compared elements are contained in the list
 		assertFalse(list.contains(2));
@@ -96,7 +87,7 @@ class LinkedEquivalenceTest {
 	}
 	@Test
 	void testRemove() {
-		LinkedEquivalenceClass l = listBuilder(2, 4, 6, 8);
+		LinkedEquivalenceClass l = listBuilder(2, 4, 6, 8, c);
 				
 		assertTrue(l.size() == 4);
 		
@@ -113,7 +104,7 @@ class LinkedEquivalenceTest {
 	//Does 4 become the new canonical if you remove 2(the canonical)?
 	@Test
 	void testRemoveCanonical() {
-		LinkedEquivalenceClass l = listBuilder(2, 4, 6, 8);
+		LinkedEquivalenceClass l = listBuilder(2, 4, 6, 8,c);
 		
 		assertTrue(l.size() == 4);
 		
@@ -127,7 +118,7 @@ class LinkedEquivalenceTest {
 	//See note
 	@Test
 	void testBelongs() {
-		LinkedEquivalenceClass l = listBuilder(2, 4, 6, 8);
+		LinkedEquivalenceClass l = listBuilder(2, 4, 6, 8,c);
 		 
 		//System.out.println(l.toString());
 		assertTrue(l.belongs(2));
@@ -137,7 +128,7 @@ class LinkedEquivalenceTest {
 	
 	@Test
 	void demoteAndSetCanonical() {
-		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8);
+		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8,c);
 		
 		assertEquals("2 | 8 6 4", list.toString());
 	

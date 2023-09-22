@@ -23,15 +23,8 @@ class EquivalenceClassesTest {
 	 { return x >=5 == y>= 5 ? 0 : 1; }
 	 };
 	 
-	public LinkedEquivalenceClass listBuilder(int c1, int x1, int x2, int x3) {
+	public LinkedEquivalenceClass listBuilder(int c1, int x1, int x2, int x3, Comparator<Integer> c) {
 		
-		Comparator<Integer> c = new Comparator<Integer>()
-		 {
-		 // All even integers are 'equivalent'
-		// All odd integers are 'equivalent'
-		public int compare(Integer x, Integer y)
-		 { return x % 2 == y % 2 ? 0 : 1; }
-		 };
 		
 		LinkedEquivalenceClass l = new LinkedEquivalenceClass(c);
 		l.add(c1);
@@ -42,7 +35,7 @@ class EquivalenceClassesTest {
 		return l;
 	}
 	
-	LinkedEquivalenceClass l1 = listBuilder(2, 4, 6, 8);
+	LinkedEquivalenceClass l1 = listBuilder(2, 4, 6, 8, c);
 	
 	EquivalenceClasses cl = new EquivalenceClasses(c1);
 	

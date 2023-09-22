@@ -108,7 +108,6 @@ public class LinkedEquivalenceClass<T>{
 		 
 		result += _canonical + " | ";
 		
-		//Add the rest
 		result += _rest.toString();
 		
 		return result;
