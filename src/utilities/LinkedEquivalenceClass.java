@@ -19,6 +19,7 @@ public class LinkedEquivalenceClass<T>{
 		return _canonical;
 	}
 	
+	//Make sure _cannonical is null
 	public boolean isEmpty() {
 		return _canonical == null && _rest.isEmpty();
 	}
@@ -32,10 +33,11 @@ public class LinkedEquivalenceClass<T>{
 		_rest.clear();
 	}
 	
-	//Moultrie
+	//@Moultrie
 	public int size() {
 		int canonical_val = 0;
 		
+		//Add 1 to size if canonical isnt null
 		if(_canonical != null) {
 			canonical_val = 1;
 		}
@@ -43,11 +45,12 @@ public class LinkedEquivalenceClass<T>{
 	}
 	
 	public boolean add(T element) {
-		
+		//Canonical becomes first element
 		if(this.isEmpty()) {
 			_canonical = element;
 			return true;
 		}
+		//Run values through comparator before adding
 		else if(_comparator.compare(_canonical, element) == 0) {
 			_rest.addToFront(element);
 			return true;
@@ -61,7 +64,7 @@ public class LinkedEquivalenceClass<T>{
 	
 	//Does cannonical need to equal target?
 	public boolean belongs(T target) {
-		//Check 
+		//Check if the canonical belongs to a class
 		if(_canonical.equals(target) && _comparator.compare(this._canonical, target)==0) return true;
 	
 		return false;
@@ -80,6 +83,7 @@ public class LinkedEquivalenceClass<T>{
 		if(_canonical == null || element != _canonical) {
 			return false;
 		}
+		//Remove by setting to null
 		_canonical = null;
 		return true;
 	}
@@ -98,13 +102,13 @@ public class LinkedEquivalenceClass<T>{
 	}
 	
 	public String toString() {
-		
 		if(isEmpty()) return "";
 		
 		String result = "";
 		 
 		result += _canonical + " | ";
 		
+		//Add the rest
 		result += _rest.toString();
 		
 		return result;

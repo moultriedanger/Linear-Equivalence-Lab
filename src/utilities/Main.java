@@ -9,11 +9,13 @@ public class Main {
 		LinkedList list2 = new LinkedList();
 		
 		//Adding elements to a list
-		list2.addToFront(50);
-		list2.addToBack(51);
+		list2.addToBack(50);
 		list2.addToBack(52);
+		list2.addToBack(55);
 		
-		System.out.println(list2.toString());
+		//System.out.println(list2.previous(50));
+	
+		
 	}
 
 }

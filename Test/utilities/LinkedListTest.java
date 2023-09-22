@@ -115,16 +115,13 @@ class LinkedListTest {
 		assertFalse(list.contains(10));
 		
 		//Testing if elements that were not removed from the list are still in the list
-		assertEquals("12 ", list.toString());
-		
+		assertEquals("12", list.toString());
 		
 		//Creating an empty list
 		LinkedList emptyList = new LinkedList();
 		
 		//Testing if remove(T object) method will return false on an empty list
 		assertFalse(emptyList.remove(51));
-		
-		
 	}
 	
 	@Test
@@ -145,7 +142,7 @@ class LinkedListTest {
 		assertTrue(list.size() == 3);
 		
 		//Testing if the elements are in an expected order set
-		assertEquals("10 12 5 ", list.toString());
+		assertEquals("10 12 5", list.toString());
 		
 		
 		//Creating an additional list
@@ -158,7 +155,7 @@ class LinkedListTest {
 		list2.addToFront(49);
 		
 		//Testing if the elements of this list are also in an expected order
-		assertEquals("49 50 51 52 ", list2.toString());
+		assertEquals("49 50 51 52", list2.toString());
 		
 	}
 	
@@ -172,13 +169,13 @@ class LinkedListTest {
 		list.addToFront(12);
 		
 		//Testing for if a list of elements will display with the toString method
-		assertEquals("12 10 ", list.toString());
+		assertEquals("12 10", list.toString());
 		
 		
 		//Creating an empty list
 		LinkedList emptyList = new LinkedList();
 		//Testing for when list is empty, a message saying the list is empty will display
-		assertEquals("List is empty", emptyList.toString());
+		assertEquals("", emptyList.toString());
 	}
 	
 	@Test

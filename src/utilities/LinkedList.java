@@ -41,12 +41,12 @@ public class LinkedList<T> {
 	public void addToFront(T element) {
 		Node n = new Node(element, _head._next);
 		
+		//Make the head point to new node
 		_head._next = n;
 		_size ++;
 	}
 	
 	public boolean contains(T target) {
-		
 		if (isEmpty()) return false;
 		
 		//Find node in linked list equal to target
@@ -56,7 +56,8 @@ public class LinkedList<T> {
 		return false;
 	}
 	
-	private Node previous(T target){
+	public Node previous(T target){
+		
 		//Check if empty and if the list contains target
 		if (isEmpty() || !this.contains(target)) return null;
 		
@@ -72,21 +73,19 @@ public class LinkedList<T> {
 		}
 		return null;
 	}
-	//Too long
+	
 	public boolean remove(T target) {
 		
 		if (isEmpty()) return false;
+		if (!contains(target)) return false;
 		
-		for(Node n = _head._next; n!= _tail; n = n._next) {
-			if(n._data == target) {
-				
-				previous(n._data)._next = n._next;
-				n._next = null;
-				_size --;
-				return true;
-			}
-		}
-		return false;
+		
+		Node n = previous(target);
+		//Set n to targets next. Garbage collect
+		n._next = n._next._next;
+		
+		_size --;
+		return true;
 	}
 
 	private Node last() {
@@ -101,55 +100,27 @@ public class LinkedList<T> {
 	
 	public void addToBack(T element) {
 		Node n = new Node(element, _tail);
-		
+		//Set previous n _next to n
 		last()._next = n;
 		_size ++;
 	}
 	
-//	public String toString() {
-//		
-//		if (isEmpty()) return "";
-//		
-//		String result = "";
-//		Node current = _head._next;
-//		while(current != _tail) {
-//			result += current._data + " ";
-//			
-//			current = current._next;
-//		}
-//		return result;
-//	}
-	
 	public String toString() {
-		return toString(_head._next);
-	}
-	
-	private String toString(Node n) {
-		String result = "";
+		if (isEmpty()) return "";
 		
-		if(n.equals(_tail)) {
-			return "";
+		String result = "";
+		Node current = _head._next;
+		
+		while(current != _tail) {
+			//Build string
+			result += current._data + " ";
+			
+			current = current._next;
 		}
-		result += n._data + " ";
-
-		return result + toString(n._next);
+		return result.substring(0, result.length()-1);
 	}
-	
-	//Node current = last();
-//	
-//	for(Node n = _head; n._next == _tail; n = n._next ) {
-//		
-//		n._next = current;
-//		
-//		current = previous(current._data);
-//	}
-	
 	
 	public void reverse() {
-		
-		
 	}
-	
-	private void 
 
 }

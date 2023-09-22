@@ -8,8 +8,22 @@ import org.junit.jupiter.api.Test;
 
 class LinkedEquivalenceTest {
 	
+	Comparator<Integer> c = new Comparator<Integer>()
+	 {
+	 // All even integers are 'equivalent'
+	// All odd integers are 'equivalent'
+	public int compare(Integer x, Integer y)
+	 { return x % 7 == y % 7 ? 0 : 1; }
+	 };
+	 
+	 Comparator<Integer> c1 = new Comparator<Integer>()
+	 {
+	 // All even integers are 'equivalent'
+	// All odd integers are 'equivalent'
+	public int compare(Integer x, Integer y)
+	 { return x >=5 == y>= 5 ? 0 : 1; }
+	 };
 
-	
 	public LinkedEquivalenceClass listBuilder(int c1, int x1, int x2, int x3) {
 		
 		Comparator<Integer> c = new Comparator<Integer>()
@@ -33,7 +47,7 @@ class LinkedEquivalenceTest {
 	void testClear() {
 		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8);
 		
-		assertEquals("2 | 8 6 4 ", list.toString());
+		assertEquals("2 | 8 6 4", list.toString());
 		
 		list.clear();
 		
@@ -125,19 +139,19 @@ class LinkedEquivalenceTest {
 	void demoteAndSetCanonical() {
 		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8);
 		
-		assertEquals("2 | 8 6 4 ", list.toString());
-		
+		assertEquals("2 | 8 6 4", list.toString());
+	
 		list.demoteAndSetCanonical(-1);
 		
-		assertEquals("2 | 8 6 4 ",list.toString());
+		assertEquals("2 | 8 6 4",list.toString());
 		
 		list.demoteAndSetCanonical(5);
 		 
-		assertEquals("2 | 8 6 4 ",list.toString());
+		assertEquals("2 | 8 6 4",list.toString());
 		 
 		list.demoteAndSetCanonical(20);
 		
-		assertEquals("20 | 8 6 4 ",list.toString());
+		assertEquals("20 | 8 6 4",list.toString());
 	}
 	
 	
