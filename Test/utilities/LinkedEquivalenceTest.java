@@ -13,7 +13,7 @@ class LinkedEquivalenceTest {
 	 // All even integers are 'equivalent'
 	// All odd integers are 'equivalent'
 	public int compare(Integer x, Integer y)
-	 { return x % 2 == y % 2 ? 0 : 1; }
+	 { return x % 7 == y % 7 ? 0 : 1; }
 	 };
 	 
 	Comparator<Integer> c1 = new Comparator<Integer>()
@@ -36,9 +36,9 @@ class LinkedEquivalenceTest {
 	
 	@Test
 	void testClear() {
-		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8, c);
+		LinkedEquivalenceClass list = listBuilder(7, 21, 25, 14, c);
 		
-		assertEquals("2 | 8 6 4", list.toString());
+		assertEquals("7 | 14 21", list.toString());
 		
 		list.clear();
 		
@@ -47,14 +47,6 @@ class LinkedEquivalenceTest {
 	
 	@Test
 	void testAdd() {
-		//Test comparator
-		Comparator<Integer> c = new Comparator<Integer>()
-		 {
-		 // All even integers are 'equivalent'
-		// All odd integers are 'equivalent'
-		public int compare(Integer x, Integer y)
-		 { return x % 2 == y % 2 ? 0 : 1; }
-		 };
 		 
 		LinkedEquivalenceClass l = new LinkedEquivalenceClass(c);
 		
@@ -66,19 +58,28 @@ class LinkedEquivalenceTest {
 		l.add(15);
 		l.add(12);
 		
-		assertTrue(l.size() == 2);
+		assertTrue(l.size() == 1);
+
+		l.add(14);
+		l.add(21);
+		
+		assertTrue(l.size() == 3);
+		
+		l.add(25);
+		
+		assertFalse(l.size() == 4);
 	}
 	
 	@Test
 
 	void testContains() {
 		
-		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8,c);
+		LinkedEquivalenceClass list = listBuilder(7, 14, 21, 28, c);
 		
 		//Testing if the canonical element is not in the list AND if the compared elements are contained in the list
-		assertFalse(list.contains(2));
-		assertTrue(list.contains(4));
-		assertTrue(list.contains(6));
+		assertFalse(list.contains(7));
+		assertTrue(list.contains(14));
+		assertTrue(list.contains(21));
 		
 		//Testing if an element that is not equivalent with the canonical does not exist in the list
 		assertFalse(list.contains(5));
@@ -87,64 +88,89 @@ class LinkedEquivalenceTest {
 	}
 	@Test
 	void testRemove() {
-		LinkedEquivalenceClass l = listBuilder(2, 4, 6, 8, c);
+		LinkedEquivalenceClass l = listBuilder(7, 14, 21, 28, c);
 				
 		assertTrue(l.size() == 4);
 		
-		l.remove(4);
-		l.remove(6);
+		l.remove(14);
+		l.remove(21);
 		
 		assertTrue(l.size() == 2);
 		
-		l.remove(2);
+		l.remove(7);
 		
 		assertTrue(l.size() == 2);
 	}
 	
-	//Does 4 become the new canonical if you remove 2(the canonical)?
 	@Test
 	void testRemoveCanonical() {
-		LinkedEquivalenceClass l = listBuilder(2, 4, 6, 8,c);
+		LinkedEquivalenceClass l = listBuilder(7, 14, 21, 28,c);
 		
 		assertTrue(l.size() == 4);
 		
-		assertFalse(l.removeCanonical(4));
-		assertFalse(l.removeCanonical(8));
-		assertTrue(l.removeCanonical(2));
+		assertFalse(l.removeCanonical(14));
+		assertFalse(l.removeCanonical(28));
+		assertTrue(l.removeCanonical(7));
 		
-		//System.out.println(l.toString());
+		LinkedEquivalenceClass i = listBuilder(5, 30, 14, 6,  c1);
+		
+		assertTrue(i.size() == 4);
+		
+		assertFalse(i.removeCanonical(30));
+		assertFalse(i.removeCanonical(6));
+		assertTrue(i.removeCanonical(5));
+		
+		assertEquals(i.canonical(), null);
 	}
 	
 	//See note
 	@Test
 	void testBelongs() {
-		LinkedEquivalenceClass l = listBuilder(2, 4, 6, 8,c);
+		LinkedEquivalenceClass l = listBuilder(7, 14, 21, 28,c);
 		 
 		//System.out.println(l.toString());
-		assertTrue(l.belongs(2));
+		assertTrue(l.belongs(7));
 		assertFalse(l.belongs(null));
-		assertFalse(l.belongs(4));
+		assertFalse(l.belongs(14));
 	}
 	
 	@Test
 	void demoteAndSetCanonical() {
-		LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8, c);
+
+		//LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8, c);
+
+		//Creating a list
+		LinkedEquivalenceClass list = listBuilder(7, 14, 21, 28,c);
+
 		
-		assertEquals("2 | 8 6 4", list.toString());
+		assertEquals("7 | 28 21 14", list.toString());
 	
 		list.demoteAndSetCanonical(-1);
 		
-		assertEquals("2 | 8 6 4",list.toString());
+		assertEquals("7 | 28 21 14",list.toString());
 		
 		list.demoteAndSetCanonical(5);
 		 
-		assertEquals("2 | 8 6 4",list.toString());
+		assertEquals("7 | 28 21 14",list.toString());
 		 
-		list.demoteAndSetCanonical(20);
+		list.demoteAndSetCanonical(49);
 		
-		assertEquals("20 | 8 6 4",list.toString());
+		assertEquals("49 | 28 21 14",list.toString());
 	}
 	
-	
+	@Test
+	void testClearNonCanonical() {
+		//Creating a list using a different comparator
+		LinkedEquivalenceClass list = listBuilder(5, 10, 15, 25, c1);
+		
+		//Removing all elements from list
+		list.clearNonCanonical();
+		
+		//Testing to see if the list has no elements, and only the canonical remains after executing
+		//clearNonCanonical method()
+		//assertEquals(list.toString(), "5 | ");
+		
+	}
+	 
 	
 }
