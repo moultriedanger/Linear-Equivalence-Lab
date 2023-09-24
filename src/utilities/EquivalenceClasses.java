@@ -13,12 +13,24 @@ public class EquivalenceClasses<T> {
 	
 	public boolean add(T element){
 		
-		if (element == null) {
-			return false;
+		if (element == null) return false;
+		
+		//Check whether the element belongs to the classList
+		int classIndex = indexOfClass(element);
+		
+		//If element does not belong to classList, create a new class and add it to the List
+		if (classIndex == -1) {
+			LinkedEquivalenceClass<T> list = new LinkedEquivalenceClass<T>(_comparator);
+			//Make the element the comparator
+			list.add(element);
+			
+			//Add the new class to LinkedClasses
+			_classes.add(list);
+			return true;
 		}
 		
-		_classes.add((LinkedEquivalenceClass<T>) element);
-
+		//If element already belongs, add to corresponding class
+		_classes.get(classIndex).add(element);
 		return true;
 	}
 	
@@ -31,17 +43,20 @@ public class EquivalenceClasses<T> {
 		return false;
 	}
 	
-
 	public int size() {
-	
-        return _classes.size();
+		int total = 0;
+		for(LinkedEquivalenceClass<T> c: _classes) {
+			//Add size of each class to total
+			total += c.size();
+		}
+        return total;
     }
 	
 	public int numClasses() {
 		return _classes.size();
 	}
 	
-	private int indexOfClass(T element) {
+	public int indexOfClass(T element) {
 		
 		for(int i = 0; i < _classes.size(); i ++) {
 			if (_classes.get(i).belongs(element)) {
@@ -55,7 +70,7 @@ public class EquivalenceClasses<T> {
 		String result = "";
 		
 		for(LinkedEquivalenceClass<T> l : _classes) {
-			result += l.toString();
+			result += l.toString()+ "\n";
 		}
 		return result;
 	}

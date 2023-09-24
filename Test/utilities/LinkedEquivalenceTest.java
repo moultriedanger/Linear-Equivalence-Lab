@@ -52,22 +52,16 @@ class LinkedEquivalenceTest {
 		
 		assertTrue(l.isEmpty());
 		l.add(7);
-		
-		assertTrue(l.size() == 1);
-		
-		l.add(15);
-		l.add(12);
-		
-		assertTrue(l.size() == 1);
-
 		l.add(14);
 		l.add(21);
 		
 		assertTrue(l.size() == 3);
 		
-		l.add(25);
+		//Will not add these 2
+		l.add(15);
+		l.add(12);
 		
-		assertFalse(l.size() == 4);
+		assertTrue(l.size() == 3);
 	}
 	
 	@Test
@@ -77,12 +71,12 @@ class LinkedEquivalenceTest {
 		LinkedEquivalenceClass list = listBuilder(7, 14, 21, 28, c);
 		
 		//Testing if the canonical element is not in the list AND if the compared elements are contained in the list
-		assertFalse(list.contains(7));
+		assertTrue(list.contains(7));
 		assertTrue(list.contains(14));
-		assertTrue(list.contains(21));
+		assertTrue(list.contains(28));
 		
 		//Testing if an element that is not equivalent with the canonical does not exist in the list
-		assertFalse(list.contains(5));
+		assertFalse(list.contains(-7));
 		assertFalse(list.contains(null));
 		assertFalse(list.contains(0));
 	}
@@ -99,6 +93,7 @@ class LinkedEquivalenceTest {
 		
 		l.remove(7);
 		
+		//Canonical is not removed
 		assertTrue(l.size() == 2);
 	}
 	
@@ -106,15 +101,13 @@ class LinkedEquivalenceTest {
 	void testRemoveCanonical() {
 		LinkedEquivalenceClass l = listBuilder(7, 14, 21, 28,c);
 		
-		assertTrue(l.size() == 4);
-		
 		assertFalse(l.removeCanonical(14));
 		assertFalse(l.removeCanonical(28));
 		assertTrue(l.removeCanonical(7));
 		
-		LinkedEquivalenceClass i = listBuilder(5, 30, 14, 6,  c1);
 		
-		assertTrue(i.size() == 4);
+		
+		LinkedEquivalenceClass i = listBuilder(5, 30, 14, 6,  c1);
 		
 		assertFalse(i.removeCanonical(30));
 		assertFalse(i.removeCanonical(6));
@@ -128,10 +121,12 @@ class LinkedEquivalenceTest {
 	void testBelongs() {
 		LinkedEquivalenceClass l = listBuilder(7, 14, 21, 28,c);
 		 
-		//System.out.println(l.toString());
+
 		assertTrue(l.belongs(7));
+		assertTrue(l.belongs(14));
+		
 		assertFalse(l.belongs(null));
-		assertFalse(l.belongs(14));
+		
 	}
 	
 	@Test

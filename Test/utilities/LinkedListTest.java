@@ -32,7 +32,7 @@ class LinkedListTest {
 	@Test
 	void clearTest() {
 		//Creating a list
-		LinkedList list = new LinkedList();
+		LinkedList<Integer> list = new LinkedList<Integer>();
 		
 		//Checking if list is empty
 		assertTrue(list.isEmpty());
@@ -84,6 +84,7 @@ class LinkedListTest {
 		assertTrue(list.contains(10));
 		assertTrue(list.contains(5));
 		assertTrue(list.contains(50));
+		assertFalse(list.contains(null));
 		
 		//Testing the contains(T target) method returns false for when an element does not exist in the list
 		assertFalse(list.contains(3));
@@ -179,18 +180,17 @@ class LinkedListTest {
 	}
 	
 	@Test
-	
 	void reverseTest() {
 		LinkedList list = new LinkedList();
-		
 		
 		list.addToBack(10);
 		list.addToBack(12);
 		list.addToBack(15);
-		System.out.println(list.toString());
+		assertEquals("10 12 15", list.toString());
+		
 		list.reverse();
 		
-		System.out.println(list.toString());
+		assertEquals("15 12 10", list.toString());
 	}
 
 }

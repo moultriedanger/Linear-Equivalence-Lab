@@ -43,44 +43,75 @@ class EquivalenceClassesTest {
 	@Test
 	void addTest() {
 		
-		EquivalenceClasses list = new EquivalenceClasses(c);
+		EquivalenceClasses l = new EquivalenceClasses(c);
 		
-		LinkedEquivalenceClass l1 = listBuilder(2, 4, 6, 13, c);
-		LinkedEquivalenceClass l2 = listBuilder(5, 3, 10, 20, c1);
+		l.add(2);
+		l.add(4);
+		l.add(8);
 		
-		list.add(l1);
+		l.add(5);
+		l.add(15);
+		l.add(25);
 		
-		list.add(l2);
+		l.add(16);
 		
-		
-		//System.out.println(list.toString());
+		l.add(-1);
+		l.add(-3);		
+		assertEquals(3,l.numClasses());
+			
 	}
 	
 	@Test
 	void sizeTest() {
 		
-		EquivalenceClasses list = new EquivalenceClasses(c);
+		EquivalenceClasses l = new EquivalenceClasses(c);
+
+		assertEquals(0,l.size());
 		
-		LinkedEquivalenceClass l1 = listBuilder(2, 4, 6, 13, c);
-		LinkedEquivalenceClass l2 = listBuilder(5, 3, 10, 20, c1);
-		LinkedEquivalenceClass l3 = listBuilder(2, 1, -15, 0, c2);
+		//Class 1
+		l.add(2);
+		l.add(4);
+		l.add(8);
 		
-		list.add(l1);
+		assertEquals(3, l.size());
 		
-		list.add(l2);
+		l.add(5);
+		l.add(15);
+		l.add(25);
 		
-		list.add(l3);
+		assertEquals(6, l.size());
 		
-		System.out.println(list.toString());
+		l.add(-1);
+		l.add(-3);
 		
-		
-		assertTrue(list.size()==3);
-		//assertFalse(list.size()==1);
+		assertEquals(3,l.numClasses());
 	}
 	
 	@Test
-	void indexOfClassTest() {
+	void contains() {
+		EquivalenceClasses l = new EquivalenceClasses(c);
+
+		assertEquals(0,l.size());
+		
+		//Class 1
+		l.add(2);
+		l.add(4);
+		l.add(8);
+		
+		assertTrue(l.contains(2));
+		assertTrue(l.contains(8));
+		
+		assertFalse(l.contains(3));
+		
+		
 		
 	}
+	
+	@Test 
+	void numClassTest(){
+		
+		
+	}
+	
 
 }

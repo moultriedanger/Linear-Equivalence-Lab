@@ -47,7 +47,8 @@ public class LinkedList<T> {
 	}
 	
 	public boolean contains(T target) {
-		if (isEmpty()) return false;
+		if (isEmpty()|| target == null) return false;
+		
 		
 		//Find node in linked list equal to target
 		for(Node n = _head._next; n!= _tail; n = n._next) {
