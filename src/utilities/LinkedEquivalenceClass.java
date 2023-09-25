@@ -21,7 +21,8 @@ public class LinkedEquivalenceClass<T>{
 	public boolean isEmpty() {
 		return _canonical == null && _rest.isEmpty();
 	}
-	
+
+	//Removes canonical and non canonical
 	public void clear() {
 		_canonical = null;
 		_rest.clear();
@@ -44,6 +45,8 @@ public class LinkedEquivalenceClass<T>{
 	}
 	
 	public boolean add(T element) {
+		if (element == null) return false;
+		
 		//Canonical becomes first element
 		if(this.isEmpty()) {
 			_canonical = element;
@@ -68,7 +71,6 @@ public class LinkedEquivalenceClass<T>{
 		return false;
 	}
 	
-	//Does canonical need to equal target?
 	public boolean belongs(T target) {
 		if (target == null) return false;
 		//Check if the canonical belongs to a class

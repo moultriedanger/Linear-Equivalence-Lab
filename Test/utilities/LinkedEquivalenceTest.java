@@ -16,7 +16,7 @@ class LinkedEquivalenceTest {
 	 { return x % 7 == y % 7 ? 0 : 1; }
 	 };
 	 
-	Comparator<Integer> c1 = new Comparator<Integer>()
+	Comparator<Integer>  c1 = new Comparator<Integer>()
 	 {
 	//Checks if greater than 5
 	public int compare(Integer x, Integer y)
@@ -46,31 +46,66 @@ class LinkedEquivalenceTest {
 	}
 	
 	@Test
+	void testClearNonCanonical() {
+		//Creating a list using a different comparator
+		LinkedEquivalenceClass list = listBuilder(5, 10, 15, 25, c1);
+		
+		//Removing all elements from list
+		list.clearNonCanonical();
+		
+		assertEquals(1, list.size());
+	
+		assertEquals(list.toString(), "5 | ");
+	}
+	
+	@Test
+	void testSize() {
+		LinkedEquivalenceClass l = new LinkedEquivalenceClass(c1);
+		
+		assertEquals(0,l.size());
+		
+		//Check canonical adds to size
+		l.add(5);
+		assertEquals(1, l.size());
+		
+		//Add rest
+		l.add(6);
+		l.add(7);
+		l.add(8);
+		
+		assertEquals(4, l.size());
+	}
+	
+	
+	
+	@Test
 	void testAdd() {
 		 
 		LinkedEquivalenceClass l = new LinkedEquivalenceClass(c);
 		
-		assertTrue(l.isEmpty());
 		l.add(7);
 		l.add(14);
 		l.add(21);
+		l.add(0);
 		
-		assertTrue(l.size() == 3);
+		//Make sure 7 is the canonical
+		assertEquals(7, l.canonical());
+		
+		assertTrue(l.size() == 4);
 		
 		//Will not add these 2
 		l.add(15);
-		l.add(12);
+		l.add(null);
 		
-		assertTrue(l.size() == 3);
+		assertTrue(l.size() == 4);
 	}
 	
 	@Test
-
 	void testContains() {
 		
 		LinkedEquivalenceClass list = listBuilder(7, 14, 21, 28, c);
 		
-		//Testing if the canonical element is not in the list AND if the compared elements are contained in the list
+		//Testing if the canonical element is in the list AND if the compared elements are contained in the list
 		assertTrue(list.contains(7));
 		assertTrue(list.contains(14));
 		assertTrue(list.contains(28));
@@ -80,11 +115,10 @@ class LinkedEquivalenceTest {
 		assertFalse(list.contains(null));
 		assertFalse(list.contains(0));
 	}
+	
 	@Test
 	void testRemove() {
 		LinkedEquivalenceClass l = listBuilder(7, 14, 21, 28, c);
-				
-		assertTrue(l.size() == 4);
 		
 		l.remove(14);
 		l.remove(21);
@@ -101,71 +135,48 @@ class LinkedEquivalenceTest {
 	void testRemoveCanonical() {
 		LinkedEquivalenceClass l = listBuilder(7, 14, 21, 28,c);
 		
+		//Shouldnt remove non canonical 
 		assertFalse(l.removeCanonical(14));
 		assertFalse(l.removeCanonical(28));
+		
+		//Remove canonical
 		assertTrue(l.removeCanonical(7));
 		
-		
-		
-		LinkedEquivalenceClass i = listBuilder(5, 30, 14, 6,  c1);
-		
-		assertFalse(i.removeCanonical(30));
-		assertFalse(i.removeCanonical(6));
-		assertTrue(i.removeCanonical(5));
-		
-		assertEquals(i.canonical(), null);
+		//Make sure canonical is null
+		assertEquals(null, l.canonical());
 	}
 	
-	//See note
 	@Test
 	void testBelongs() {
 		LinkedEquivalenceClass l = listBuilder(7, 14, 21, 28,c);
 		 
-
 		assertTrue(l.belongs(7));
 		assertTrue(l.belongs(14));
 		
+		//Make sure these elements dont belong
+		assertFalse(l.belongs(1));
+		assertFalse(l.belongs(-13));
+		assertFalse(l.belongs(100));
 		assertFalse(l.belongs(null));
-		
 	}
 	
 	@Test
 	void demoteAndSetCanonical() {
 
-		//LinkedEquivalenceClass list = listBuilder(2, 4, 6, 8, c);
-
-		//Creating a list
 		LinkedEquivalenceClass list = listBuilder(7, 14, 21, 28,c);
-
 		
 		assertEquals("7 | 28 21 14", list.toString());
 	
+		//Will not change canonical
 		list.demoteAndSetCanonical(-1);
-		
 		assertEquals("7 | 28 21 14",list.toString());
 		
+		//Wont change canonical
 		list.demoteAndSetCanonical(5);
-		 
 		assertEquals("7 | 28 21 14",list.toString());
-		 
-		list.demoteAndSetCanonical(49);
 		
+		//Make 49 the new canonical
+		list.demoteAndSetCanonical(49);
 		assertEquals("49 | 28 21 14",list.toString());
 	}
-	
-	@Test
-	void testClearNonCanonical() {
-		//Creating a list using a different comparator
-		LinkedEquivalenceClass list = listBuilder(5, 10, 15, 25, c1);
-		
-		//Removing all elements from list
-		list.clearNonCanonical();
-		
-		//Testing to see if the list has no elements, and only the canonical remains after executing
-		//clearNonCanonical method()
-		//assertEquals(list.toString(), "5 | ");
-		
-	}
-	 
-	
 }

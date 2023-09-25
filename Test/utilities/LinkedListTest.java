@@ -14,17 +14,12 @@ class LinkedListTest {
 		//Testing if isEmpty() method returns true when list has no elements
 		assertTrue(list.isEmpty());
 		
-
-		//Creating a list
-		LinkedList list2 = new LinkedList();
+		LinkedList<Integer> list2 = new LinkedList<Integer>();
 		
-		//Adding elements to a list
+		//Populate list
 		list2.addToFront(50);
-		list2.addToBack(51);
-		list2.addToBack(52);
-		
-		//System.out.println(list2.toString());
-		
+		list2.addToFront(51);
+
 		//Testing if isEmpty() method returns false when list contains elements
 		assertFalse(list2.isEmpty());
 	}
@@ -34,29 +29,28 @@ class LinkedListTest {
 		//Creating a list
 		LinkedList<Integer> list = new LinkedList<Integer>();
 		
-		//Checking if list is empty
-		assertTrue(list.isEmpty());
-		
-		//Adding elements to a list
+		//Populate list
 		list.addToFront(5);
 		list.addToFront(10);
 		list.addToFront(15);
 		
+		//Check 
+		assertEquals(3,list.size());
+		
 		//Testing if the clear() method functions appropriately and if the size of the list sets to 0
 		list.clear();
-		assertTrue(list.size() == 0);
+		assertEquals(3,list.size());
 	}
 	
 	@Test
 	void testAddToFront() {
 		//Creating a list
-		LinkedList list = new LinkedList();
+		LinkedList<Integer> list = new LinkedList<Integer>();
 		
 		//Adding elements to a list
 		list.addToFront(5);
 		list.addToFront(10);
 		list.addToFront(15);
-		//Smth happening to other elements???
 		
 		//Testing if the size of the list corresponds to the number of added elements
 		assertTrue(list._size == 3);
@@ -73,7 +67,7 @@ class LinkedListTest {
 	@Test
 	void containsTest() {
 		//Creating a list
-		LinkedList list = new LinkedList();
+		LinkedList<Integer> list = new LinkedList<Integer>();
 		
 		//Adding elements to a list
 		list.addToFront(5);
@@ -97,7 +91,7 @@ class LinkedListTest {
 	void removeTest() {
 		
 		//Creating a list
-		LinkedList list = new LinkedList();
+		LinkedList<Integer> list = new LinkedList<Integer>();
 		
 		//Adding elements to a list
 		list.addToFront(10);
@@ -119,7 +113,7 @@ class LinkedListTest {
 		assertEquals("12", list.toString());
 		
 		//Creating an empty list
-		LinkedList emptyList = new LinkedList();
+		LinkedList<Integer> emptyList = new LinkedList<Integer>();
 		
 		//Testing if remove(T object) method will return false on an empty list
 		assertFalse(emptyList.remove(51));
@@ -128,7 +122,7 @@ class LinkedListTest {
 	@Test
 	void addToBackTest() {
 		//Creating a list
-		LinkedList list = new LinkedList();
+		LinkedList<Integer> list = new LinkedList<Integer>();
 		
 		//Adding elements to a list
 		list.addToFront(10);
@@ -137,17 +131,14 @@ class LinkedListTest {
 		
 
 		//Testing if the list contains the added elements
-
-		//System.out.println(list.toString());
 		
 		assertTrue(list.size() == 3);
 		
 		//Testing if the elements are in an expected order set
 		assertEquals("10 12 5", list.toString());
 		
-		
 		//Creating an additional list
-		LinkedList list2 = new LinkedList();
+		LinkedList<Integer> list2 = new LinkedList<Integer>();
 		
 		//Adding elements to a list
 		list2.addToBack(51);
@@ -157,13 +148,12 @@ class LinkedListTest {
 		
 		//Testing if the elements of this list are also in an expected order
 		assertEquals("49 50 51 52", list2.toString());
-		
 	}
 	
 	@Test
 	void toStringTest() {
 		//Creating a list
-		LinkedList list = new LinkedList();
+		LinkedList<Integer> list = new LinkedList<Integer>();
 		
 		//Adding elements to a list
 		list.addToFront(10);
@@ -171,7 +161,6 @@ class LinkedListTest {
 		
 		//Testing for if a list of elements will display with the toString method
 		assertEquals("12 10", list.toString());
-		
 		
 		//Creating an empty list
 		LinkedList emptyList = new LinkedList();
@@ -181,7 +170,7 @@ class LinkedListTest {
 	
 	@Test
 	void reverseTest() {
-		LinkedList list = new LinkedList();
+		LinkedList<Integer> list = new LinkedList<Integer>();
 		
 		list.addToBack(10);
 		list.addToBack(12);

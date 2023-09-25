@@ -2,6 +2,7 @@ package utilities;
 
 public class LinkedList<T> {
 	
+	//Create node class
 	private class Node{
 		private T _data;
 		private Node _next;
@@ -49,7 +50,6 @@ public class LinkedList<T> {
 	public boolean contains(T target) {
 		if (isEmpty()|| target == null) return false;
 		
-		
 		//Find node in linked list equal to target
 		for(Node n = _head._next; n!= _tail; n = n._next) {
 			if(n._data.equals(target)) return true;
@@ -76,10 +76,8 @@ public class LinkedList<T> {
 	}
 	
 	public boolean remove(T target) {
-		
-		if (isEmpty()) return false;
+	
 		if (!contains(target)) return false;
-		
 		
 		Node n = previous(target);
 		//Set n to targets next. Garbage collect
@@ -89,7 +87,10 @@ public class LinkedList<T> {
 		return true;
 	}
 
+	//Returns last node in list
 	private Node last() {
+		if (isEmpty()) return null;
+		
 		Node current = _head;
 		
 		while(current._next != _tail) {
@@ -101,8 +102,12 @@ public class LinkedList<T> {
 	
 	public void addToBack(T element) {
 		Node n = new Node(element, _tail);
-		//Set previous n _next to n
+		
+		//Make the last point to new node
 		last()._next = n;
+		
+		//Added node point to tail
+		n._next = _tail;
 		_size ++;
 	}
 	
@@ -136,6 +141,4 @@ public class LinkedList<T> {
 			reverse(first._next, previous(last._data), ++i);
 		}
 	}
-	
-
 }
