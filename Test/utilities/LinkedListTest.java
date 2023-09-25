@@ -39,7 +39,7 @@ class LinkedListTest {
 		
 		//Testing if the clear() method functions appropriately and if the size of the list sets to 0
 		list.clear();
-		assertEquals(3,list.size());
+		assertEquals(0,list.size());
 	}
 	
 	@Test
@@ -140,7 +140,7 @@ class LinkedListTest {
 		//Creating an additional list
 		LinkedList<Integer> list2 = new LinkedList<Integer>();
 		
-		//Adding elements to a list
+		//Adding to back first
 		list2.addToBack(51);
 		list2.addToFront(50);
 		list2.addToBack(52);
@@ -180,6 +180,16 @@ class LinkedListTest {
 		list.reverse();
 		
 		assertEquals("15 12 10", list.toString());
+		
+		LinkedList<Integer> list2 = new LinkedList<Integer>();
+		
+		list.addToBack(10);
+		
+		assertEquals("10", list.toString());
+		
+		list.reverse();
+		
+		assertEquals("10", list.toString());
 	}
 
 }

@@ -82,11 +82,10 @@ class EquivalenceClassesTest {
 		assertTrue(divideSeven.contains(22));
 		assertTrue(divideSeven.contains(103));
 		
-		
 		EquivalenceClasses modWeird = new EquivalenceClasses(c2);
 		
-		
 		//R = 1
+		//Canonical doesnt return true
 		modWeird.add(260);
 		modWeird.add(297);
 		modWeird.add(334);
@@ -104,7 +103,6 @@ class EquivalenceClassesTest {
 		modWeird.add(22);
 		modWeird.add(59);
 		modWeird.add(1391);
-		
 		
 		assertEquals(3, modWeird.numClasses());
 		
@@ -150,12 +148,6 @@ class EquivalenceClassesTest {
 		
 		assertEquals(0, divideSeven.numClasses());
 		
-		//Remainder 0
-		divideSeven.add(7);
-		divideSeven.add(14);
-		divideSeven.add(21);
-		divideSeven.add(28);
-		
 		//Remainder 1 list
 		divideSeven.add(1);
 		divideSeven.add(8);
@@ -168,6 +160,36 @@ class EquivalenceClassesTest {
 		divideSeven.add(47);
 		divideSeven.add(103);
 		
+		//Remainder 0
+		divideSeven.add(7);
+		divideSeven.add(14);
+		divideSeven.add(21);
+		divideSeven.add(28);
+		
 		assertEquals(3, divideSeven.numClasses());
+	}
+	
+	@Test
+	void sizeTest() {
+		EquivalenceClasses divideSeven = new EquivalenceClasses(c);
+		
+		assertEquals(0,divideSeven.size());
+		
+		//Add canonical
+		divideSeven.add(7);
+	
+		assertEquals(1, divideSeven.size());
+		
+		divideSeven.add(14);
+		divideSeven.add(21);
+		divideSeven.add(28);
+		
+		//Remainder 1 list
+		divideSeven.add(1);
+		divideSeven.add(8);
+		divideSeven.add(15);
+		divideSeven.add(22);
+		
+		assertEquals(8, divideSeven.size());
 	}
 }

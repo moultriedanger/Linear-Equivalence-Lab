@@ -89,7 +89,6 @@ public class LinkedList<T> {
 
 	//Returns last node in list
 	private Node last() {
-		if (isEmpty()) return null;
 		
 		Node current = _head;
 		
@@ -125,20 +124,26 @@ public class LinkedList<T> {
 		}
 		return result.substring(0, result.length()-1);
 	}
-	
+
 	public void reverse() {
-		reverse(_head._next, last(), 0);
-	}
+		//Prev to trail behind head.next
+		Node prev = _head;
 		
-	public void reverse(Node first, Node last, int i) {
-		if(!(i ==_size/2)) {
-			T val1 = last._data;
-			T val2 = first._data;
+		Node n = _head._next;
+		
+		Node temp = null;
+	    
+		while(n != _tail) {
+			//Save n next in a temp
+			temp = n._next;
 			
-			last._data = val2;
-			first._data = val1;
+			//Set n to its previous
+			n._next = prev;
 			
-			reverse(first._next, previous(last._data), ++i);
+			n = n._next;
+			prev = prev._next;
 		}
+		//Set n to the first new first in list. 
+		_head._next = prev;
 	}
 }

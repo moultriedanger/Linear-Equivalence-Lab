@@ -76,8 +76,6 @@ class LinkedEquivalenceTest {
 		assertEquals(4, l.size());
 	}
 	
-	
-	
 	@Test
 	void testAdd() {
 		 
