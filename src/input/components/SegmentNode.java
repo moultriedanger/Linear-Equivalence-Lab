@@ -1,6 +1,6 @@
-package utilities;
+package input.components;
 
-import utilities.PointNode;
+import input.components.PointNode;
 
 /**
  * Describes a line between 2 points

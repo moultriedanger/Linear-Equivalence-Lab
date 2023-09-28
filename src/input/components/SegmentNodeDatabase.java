@@ -1,4 +1,4 @@
-package utilities;
+package input.components;
 import java.util.ArrayList;
 
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import utilities.PointNode;
+import input.components.PointNode;
 
 import java.util.Set;
 /**

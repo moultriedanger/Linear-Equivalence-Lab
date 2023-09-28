@@ -1,9 +1,7 @@
-package utilities;
+package input.components;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
-
-import utilities.PointNode;
 /*
 * Allows us to put PointNode objects in a linkedHashSet.
 *@author Moultrie DangerField and Jack Patterson

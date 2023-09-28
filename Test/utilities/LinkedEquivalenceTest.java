@@ -23,9 +23,9 @@ class LinkedEquivalenceTest {
 	 { return x >=5 == y>= 5 ? 0 : 1; }
 	 };
 
-	public LinkedEquivalenceClass listBuilder(int c1, int x1, int x2, int x3, Comparator<Integer> c) {
+	public LinkedEquivalenceClass<Integer> listBuilder(int c1, int x1, int x2, int x3, Comparator<Integer> c) {
 		
-		LinkedEquivalenceClass l = new LinkedEquivalenceClass(c);
+		LinkedEquivalenceClass<Integer> l = new LinkedEquivalenceClass<Integer>(c);
 		l.add(c1);
 		l.add(x1);
 		l.add(x2);
@@ -36,7 +36,7 @@ class LinkedEquivalenceTest {
 	
 	@Test
 	void testClear() {
-		LinkedEquivalenceClass list = listBuilder(7, 21, 25, 14, c);
+		LinkedEquivalenceClass<Integer> list = listBuilder(7, 21, 25, 14, c);
 		
 		assertEquals("7 | 14 21", list.toString());
 		
@@ -48,7 +48,7 @@ class LinkedEquivalenceTest {
 	@Test
 	void testClearNonCanonical() {
 		//Creating a list using a different comparator
-		LinkedEquivalenceClass list = listBuilder(5, 10, 15, 25, c1);
+		LinkedEquivalenceClass<Integer> list = listBuilder(5, 10, 15, 25, c1);
 		
 		//Removing all elements from list
 		list.clearNonCanonical();
@@ -60,7 +60,7 @@ class LinkedEquivalenceTest {
 	
 	@Test
 	void testSize() {
-		LinkedEquivalenceClass l = new LinkedEquivalenceClass(c1);
+		LinkedEquivalenceClass<Integer> l = new LinkedEquivalenceClass<Integer>(c1);
 		
 		assertEquals(0,l.size());
 		
@@ -79,7 +79,7 @@ class LinkedEquivalenceTest {
 	@Test
 	void testAdd() {
 		 
-		LinkedEquivalenceClass l = new LinkedEquivalenceClass(c);
+		LinkedEquivalenceClass<Integer> l = new LinkedEquivalenceClass<Integer>(c);
 		
 		l.add(7);
 		l.add(14);
@@ -101,7 +101,7 @@ class LinkedEquivalenceTest {
 	@Test
 	void testContains() {
 		
-		LinkedEquivalenceClass list = listBuilder(7, 14, 21, 28, c);
+		LinkedEquivalenceClass<Integer> list = listBuilder(7, 14, 21, 28, c);
 		
 		//Testing if the canonical element is in the list AND if the compared elements are contained in the list
 		assertTrue(list.contains(7));
@@ -116,7 +116,7 @@ class LinkedEquivalenceTest {
 	
 	@Test
 	void testRemove() {
-		LinkedEquivalenceClass l = listBuilder(7, 14, 21, 28, c);
+		LinkedEquivalenceClass<Integer> l = listBuilder(7, 14, 21, 28, c);
 		
 		l.remove(14);
 		l.remove(21);
@@ -131,7 +131,7 @@ class LinkedEquivalenceTest {
 	
 	@Test
 	void testRemoveCanonical() {
-		LinkedEquivalenceClass l = listBuilder(7, 14, 21, 28,c);
+		LinkedEquivalenceClass<Integer> l = listBuilder(7, 14, 21, 28,c);
 		
 		//Shouldnt remove non canonical 
 		assertFalse(l.removeCanonical(14));
@@ -146,7 +146,7 @@ class LinkedEquivalenceTest {
 	
 	@Test
 	void testBelongs() {
-		LinkedEquivalenceClass l = listBuilder(7, 14, 21, 28,c);
+		LinkedEquivalenceClass<Integer> l = listBuilder(7, 14, 21, 28,c);
 		 
 		assertTrue(l.belongs(7));
 		assertTrue(l.belongs(14));
@@ -161,7 +161,7 @@ class LinkedEquivalenceTest {
 	@Test
 	void demoteAndSetCanonical() {
 
-		LinkedEquivalenceClass list = listBuilder(7, 14, 21, 28,c);
+		LinkedEquivalenceClass<Integer> list = listBuilder(7, 14, 21, 28,c);
 		
 		assertEquals("7 | 28 21 14", list.toString());
 	

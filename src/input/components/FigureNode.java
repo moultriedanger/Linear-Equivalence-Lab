@@ -1,10 +1,7 @@
 package input.components;
-
 import java.util.Set;
+import org.json.JSONObject;
 
-import input.components.point.PointNode;
-import input.components.point.PointNodeDatabase;
-import input.components.segment.SegmentNodeDatabase;
 
 /**
  * A basic figure consists of points, segments, and an optional description
@@ -32,6 +29,6 @@ public class FigureNode implements ComponentNode
 	@Override
 	public void unparse(StringBuilder sb, int level)
 	{
-        // TODO
+        JSONObject test = new JSONObject("");
     }
 }

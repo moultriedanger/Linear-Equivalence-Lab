@@ -1,4 +1,4 @@
-package utilities;
+package input.components;
 
 import utilities.math.MathUtilities;
 
