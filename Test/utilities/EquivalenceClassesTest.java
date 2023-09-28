@@ -30,7 +30,7 @@ class EquivalenceClassesTest {
 	@Test
 	void addTest() {
 		
-		EquivalenceClasses lessTwo = new EquivalenceClasses(c1);
+		EquivalenceClasses<Integer> lessTwo = new EquivalenceClasses<Integer>(c1);
 				
 		lessTwo.add(2);
 		lessTwo.add(1);		

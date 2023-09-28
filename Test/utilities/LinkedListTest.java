@@ -128,8 +128,7 @@ class LinkedListTest {
 		list.addToFront(10);
 		list.addToBack(12);
 		list.addToBack(5);
-		
-
+	
 		//Testing if the list contains the added elements
 		
 		assertTrue(list.size() == 3);
