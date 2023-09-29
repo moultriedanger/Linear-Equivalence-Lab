@@ -35,13 +35,13 @@ public class JSONParser
 		JSONObject  JSONFigure = (JSONObject)tokenizer.nextValue();
 		JSONObject fig = JSONFigure.getJSONObject("Figure");
 		String desc = fig.getString("Description");
-		PointNodeDatabase pnd = getPND(fig);
-
+		JSONArray jArray = fig.getJSONArray("Points");
+		PointNodeDatabase pnd = getPND(jArray);
+		
 	}
         // TODO: Build the whole AST, check for return class object, and return the root
 
-	public PointNodeDatabase getPND(JSONObject fig) {
-		JSONArray jArray = fig.getJSONArray("Points");
+	public PointNodeDatabase getPND(JSONArray jArray) {
 		PointNodeDatabase pnd = new PointNodeDatabase();
 		for(Object item: jArray)
 		{
@@ -57,11 +57,14 @@ public class JSONParser
 	public SegmentNodeDatabase getSND(JSONObject fig) {
 		JSONArray jArray = fig.getJSONArray("Segments");
 		SegmentNodeDatabase snd = new SegementNodeDatabase();
+
 		for(Object item: jArray) {
 			JSONObject jObj = (JSONObject) item;
-			
-			
+			SegmentNode sn = new SegmentNode();
+			String key = item.keys();
+			JSONArray adjList = jObj.getArray(key);
 		}
+		
 	}
 		
 		
