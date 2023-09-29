@@ -40,9 +40,20 @@ public class JSONParser
         // TODO: Build the whole AST, check for return class object, and return the root
 
 	public PointNodeDatabase getPND(JSONObject fig) {
-		JSONArray pnd = fig.getJSONArray("Points");
-		JSONArray 
+		JSONArray jArray = fig.getJSONArray("Points");
+		PointNodeDatabase pnd = new PointNodeDatabase();
+		for(Object item: jArray)
+		{
+			JSONObject jObj = (JSONObject) item;
+			String name = jObj.getString("name");
+			Double x=jObj.getDouble("x");
+			Double y=jObj.getDouble("y");
+			PointNode pt= new PointNode(name, x, y);
+			pnd.put(pt);
+		}
+		return pnd;
 		
-		return jArray;
+		
+		
 	}
 }
