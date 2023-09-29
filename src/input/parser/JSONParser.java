@@ -32,11 +32,17 @@ public class JSONParser
 	{
 		// Parsing is accomplished via the JSONTokenizer class.
 		JSONTokener tokenizer = new JSONTokener(str);
-		JSONObject  JSONroot = (JSONObject)tokenizer.nextValue();
+		JSONObject  JSONFigure = (JSONObject)tokenizer.nextValue();
+		JSONObject fig = JSONFigure.getJSONObject("Figure");
+		String desc = fig.getString("Description");
 
-        // TODO: Build the whole AST, check for return class object, and return the root
 	}
+        // TODO: Build the whole AST, check for return class object, and return the root
 
-    // TODO: implement supporting functionality
-
+	public PointNodeDatabase getPND(JSONObject fig) {
+		JSONArray pnd = fig.getJSONArray("Points");
+		JSONArray 
+		
+		return jArray;
+	}
 }

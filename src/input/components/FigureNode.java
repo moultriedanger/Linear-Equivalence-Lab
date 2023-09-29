@@ -28,7 +28,8 @@ public class FigureNode implements ComponentNode
 
 	@Override
 	public void unparse(StringBuilder sb, int level)
-	{
-        JSONObject test = new JSONObject("");
-    }
+	{ 
+
+	}
+	
 }
