@@ -41,8 +41,8 @@ public class SegmentNodeDatabase {
 			}
 		}
 		return count/2;
-
 	}
+	
 	/*
 	 * Creates a one way connection between pointnodes
 	 *@param PointNode

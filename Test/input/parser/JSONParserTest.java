@@ -38,7 +38,7 @@ class JSONParserTest
 		// files into a folder, update this String with the path:
 		//                                       e.g., "my_folder/single_triangle.json"
 		//
-		ComponentNode node = JSONParserTest.runFigureParseTest("single_triangle.json");
+		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/single_triangle.json");
 
 		assertTrue(node instanceof FigureNode);
 		
