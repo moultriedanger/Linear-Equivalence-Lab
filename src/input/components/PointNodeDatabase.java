@@ -88,6 +88,14 @@ public class PointNodeDatabase {
 		}
 		return null;
 	}
+	
+	public PointNode getPoint(String name) {
+		for (PointNode p: _points) {
+			if (p._name.equals(name)) return p;
+		}
+		return null;
+		
+	}
 	/*
 	* returns the pointNode described by the parameter
 	*@param double of the x value
