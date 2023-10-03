@@ -96,15 +96,9 @@ public class JSONParser
 			JSONArray value = jObj.getJSONArray(key.get(0).toString());
 			for(int i = 0; i<value.length(); i++) {
 				
-				System.out.print(key.get(0));
-				
-				//System.out.println()
-				System.out.println(value.get(i));
-				
 				segments.addUndirectedEdge(getPoint(fig, key.get(0).toString()), getPoint(fig, value.get(i).toString()));
 			}
 		}
-		System.out.println(segments.asUnigueSegmentList());
 		return segments;
 	}
 	public PointNode getPoint(JSONObject fig, String name) {

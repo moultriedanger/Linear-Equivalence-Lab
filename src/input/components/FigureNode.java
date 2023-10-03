@@ -29,7 +29,10 @@ public class FigureNode implements ComponentNode
 	@Override
 	public void unparse(StringBuilder sb, int level)
 	{ 
-
+		sb.append("Figure\n{\n\tDescription : " + getDescription());
+		_points.unparse(sb, 1);
+		_segments.unparse(sb, 1);
+		sb.append("\n\t}\n}");
 	}
 	
 }

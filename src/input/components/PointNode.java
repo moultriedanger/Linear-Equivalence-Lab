@@ -7,7 +7,7 @@ import utilities.math.MathUtilities;
  * @author Moultrie Dangerfield and Jack Patterson
  * @version 09/07/2023
  */
-public class PointNode
+public class PointNode implements ComponentNode
 {
 	protected static final String ANONYMOUS = "__UNNAMED";
 
@@ -78,6 +78,17 @@ public class PointNode
     @Override
     public String toString()
     {
-		return _name  + "(" + String.valueOf(_x) + "," + String.valueOf(_y) + ")";
+		return _name  + ")(" + String.valueOf(_x) + "," + String.valueOf(_y) + ")\n";
+	}
+
+	@Override
+	public void unparse(StringBuilder sb, int level) {
+		int i=0;
+		while (i<level) {
+			sb.append("\t");
+			i=i+1;
+		}
+		sb.append("Point(" + toString());
+		
 	}
 }

@@ -15,7 +15,7 @@ import java.util.Set;
  * @author Moultrie Dangerfield and Jack Patterson
  * @version 09/07/2023
  */
-public class SegmentNodeDatabase {
+public class SegmentNodeDatabase implements ComponentNode{
 	protected HashMap<PointNode, LinkedHashSet<PointNode>> _adjLists;
 
 	public SegmentNodeDatabase() {
@@ -122,5 +122,17 @@ public class SegmentNodeDatabase {
 		}
 		return segList;
 	}
-
+	@Override
+	public void unparse(StringBuilder sb, int level) {
+		sb.append("\tSegments:\n\t{");
+		Set<PointNode> setKey = _adjLists.keySet();
+		for(PointNode pn1: setKey) {
+			sb.append("\n\t\t" + pn1.getName() + " : ");
+			for (PointNode pn2: (_adjLists.get(pn1))){
+				sb.append(pn2.getName() + " ");
+			}
+		}
+		
+	}
+	
 }

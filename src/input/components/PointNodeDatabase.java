@@ -7,7 +7,7 @@ import java.util.LinkedHashSet;
 *@author Moultrie DangerField and Jack Patterson
 *@version 9/7/23
 */
-public class PointNodeDatabase {
+public class PointNodeDatabase implements ComponentNode{
 	
 	protected LinkedHashSet<PointNode> _points;
 	
@@ -110,6 +110,16 @@ public class PointNodeDatabase {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void unparse(StringBuilder sb, int level) {
+		sb.append("\n\tPoints:\n\t{\n");
+		for (PointNode p: _points) {
+			p.unparse(sb, level+1);
+		}
+		sb.append("\t}\n");
+		
 	}
 	
 }
