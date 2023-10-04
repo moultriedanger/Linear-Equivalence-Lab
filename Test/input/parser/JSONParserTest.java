@@ -38,7 +38,7 @@ class JSONParserTest
 		// files into a folder, update this String with the path:
 		//                                       e.g., "my_folder/single_triangle.json"
 		//
-		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/single_triangle.json");
+		ComponentNode node = JSONParserTest.runFigureParseTest("JSON tests/single_triangle.json");
 
 		assertTrue(node instanceof FigureNode);
 		
@@ -55,7 +55,7 @@ class JSONParserTest
 		// files into a folder, update this String with the path:
 		//                                       e.g., "my_folder/single_triangle.json"
 		//
-		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/collinear_line_segments.json");
+		ComponentNode node = JSONParserTest.runFigureParseTest("JSON tests/collinear_line_segments.json");
 
 		assertTrue(node instanceof FigureNode);
 		
@@ -72,7 +72,7 @@ class JSONParserTest
 		// files into a folder, update this String with the path:
 		//                                       e.g., "my_folder/single_triangle.json"
 		//
-		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/crossing_symmetric_triangle.json");
+		ComponentNode node = JSONParserTest.runFigureParseTest("JSON tests/crossing_symmetric_triangle.json");
 
 		assertTrue(node instanceof FigureNode);
 		
@@ -89,7 +89,7 @@ class JSONParserTest
 		// files into a folder, update this String with the path:
 		//                                       e.g., "my_folder/single_triangle.json"
 		//
-		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/fully_connected_irregular_polygon.json");
+		ComponentNode node = JSONParserTest.runFigureParseTest("JSON tests/fully_connected_irregular_polygon.json");
 
 		assertTrue(node instanceof FigureNode);
 		
@@ -100,7 +100,7 @@ class JSONParserTest
 	@Test
 	void dentedtrapezoidtest()
 	{
-		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/dentedtrapezoid.json");
+		ComponentNode node = JSONParserTest.runFigureParseTest("JSON tests/dentedtrapezoid.json");
 
 		assertTrue(node instanceof FigureNode);
 		
@@ -111,7 +111,7 @@ class JSONParserTest
 	@Test
 	void irregular_Hexagon()
 	{
-		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/irregular_Hexagon.json");
+		ComponentNode node = JSONParserTest.runFigureParseTest("JSON tests/irregular_Hexagon.json");
 
 		assertTrue(node instanceof FigureNode);
 		
@@ -122,7 +122,7 @@ class JSONParserTest
 	@Test
 	void parallelogram()
 	{
-		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/parallelogram.json");
+		ComponentNode node = JSONParserTest.runFigureParseTest("JSON tests/parallelogram.json");
 
 		assertTrue(node instanceof FigureNode);
 		
