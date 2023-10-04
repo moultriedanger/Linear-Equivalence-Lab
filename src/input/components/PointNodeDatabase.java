@@ -1,6 +1,7 @@
 package input.components;
 
 import java.util.ArrayList;
+
 import java.util.LinkedHashSet;
 /*
 * Allows us to put PointNode objects in a linkedHashSet.
@@ -104,22 +105,19 @@ public class PointNodeDatabase implements ComponentNode{
 	*/
 	public PointNode getPoint(double x, double y) {
 		
-		for(PointNode p: _points) {
-			if(p.getX() == x && p.getY() == y) {
-				return p;
-			}
-		}
-		return null;
+		PointNode p = new PointNode(x, y);
+		return getPoint(p);	
 	}
-
+	/*
+	 * Builds a string to describe a figure, uses the figurenode class, the pointnode class, and the segmentnodedatabase class.
+	 *@param stingbuilder is the string that gets built
+	 *@param level is amount of indentations
+	*/
 	@Override
 	public void unparse(StringBuilder sb, int level) {
-		sb.append("\n\tPoints:\n\t{\n");
 		for (PointNode p: _points) {
 			p.unparse(sb, level+1);
-		}
-		sb.append("\t}\n");
-		
+		}	
 	}
 	
 }

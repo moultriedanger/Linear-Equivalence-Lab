@@ -1,5 +1,6 @@
 package input.components;
 
+import utilities.io.StringUtilities;
 import utilities.math.MathUtilities;
 
 /**
@@ -74,21 +75,20 @@ public class PointNode implements ComponentNode
 		}
 		return true;
 	}
-
-    @Override
-    public String toString()
+	
+	@Override
+	public String toString()
     {
-		return _name  + ")(" + String.valueOf(_x) + "," + String.valueOf(_y) + ")\n";
+		return "Point(" + _name  + ")(" + String.valueOf(_x) + "," + String.valueOf(_y) + ")\n";
 	}
-
+	/* Builds a string to describe a figure, uses the FigureNode class, the pointnodedatabase class, and the segmentnodedatabase class.
+	 *@param stingbuilder is the string that gets built
+	 *@param level is amount of indentations
+	*/
 	@Override
 	public void unparse(StringBuilder sb, int level) {
-		int i=0;
-		while (i<level) {
-			sb.append("\t");
-			i=i+1;
-		}
-		sb.append("Point(" + toString());
+		sb.append(StringUtilities.indent(level));
+		sb.append(toString());
 		
 	}
 }

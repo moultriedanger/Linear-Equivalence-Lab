@@ -1,16 +1,12 @@
 package input.parser;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import input.components.*;
-import input.components.SegmentNode;
 import input.components.SegmentNodeDatabase;
 import input.exception.ParseException;
 
@@ -36,48 +32,40 @@ public class JSONParser
 		JSONObject  JSONFigure = (JSONObject)tokenizer.nextValue();
 		JSONObject fig = JSONFigure.getJSONObject("Figure");
 		String desc = fig.getString("Description");
-		JSONArray jArray = fig.getJSONArray("Points");
+		JSONArray jPoints = fig.getJSONArray("Points");
 		
-		PointNodeDatabase pnd = getPND(jArray);
+		PointNodeDatabase pnd = getPND(jPoints);
 		SegmentNodeDatabase snd = handleSegments(pnd,fig);
 		
 		FigureNode f = new FigureNode(desc, pnd, snd);
-		
 		return f;
 	}
     // TODO: Build the whole AST, check for return class object, and return the root
 
-	public PointNodeDatabase getPND(JSONArray jArray) {
+	/*
+	 * Creates a pointnodedatabse using from the JSON file
+	 *@param JSONArray the array of points in the JSON file
+	*/
+	public PointNodeDatabase getPND(JSONArray jPoints) {
 		PointNodeDatabase pnd = new PointNodeDatabase();
 		
-		for(Object item: jArray)
+		for(Object item: jPoints)
 		{
 			JSONObject jObj = (JSONObject) item;
-			
 			String name = jObj.getString("name");
 			Double x = jObj.getDouble("x");
-			Double y = jObj.getDouble("y");
-			
-//			System.out.println(name);
-//			System.out.println(x);
-//			System.out.println(y);
-			
+			Double y = jObj.getDouble("y");			
 			PointNode pt = new PointNode(name, x, y);
 			pnd.put(pt);
 		}
 		return pnd;
 	}
-//	public SegmentNodeDatabase getSND(JSONObject fig) {
-//		JSONArray jArray = fig.getJSONArray("Segments");
-//		SegmentNodeDatabase snd = new SegmentNodeDatabase();
-//
-//		for(Object item: jArray) {
-//			JSONObject jObj = (JSONObject) item;
-//			SegmentNode sn = new SegmentNode();
-//			String key = item.keys();
-//			JSONArray adjList = jObj.getArray(key);
-//		}		
-//	}
+	
+	/*
+	 * Finds the segments JSONObject and then iterates through it to make a segmentNodeDatabase
+	 *@param points if a pointnodedatabase so we can call getPoint method
+	 *@param fig is so we can have assess to the JSON File
+	*/
 	private SegmentNodeDatabase handleSegments(PointNodeDatabase points, JSONObject fig)
 	{
 		JSONArray json_adjLists = fig.getJSONArray("Segments");
@@ -92,26 +80,11 @@ public class JSONParser
 			//System.out.print(key);
 					
 			JSONObject jObj = dict;
-			
 			JSONArray value = jObj.getJSONArray(key.get(0).toString());
 			for(int i = 0; i<value.length(); i++) {
-				
-				segments.addUndirectedEdge(getPoint(fig, key.get(0).toString()), getPoint(fig, value.get(i).toString()));
+				segments.addUndirectedEdge(points.getPoint(key.get(0).toString()), points.getPoint(value.get(i).toString()));
 			}
 		}
 		return segments;
-	}
-	public PointNode getPoint(JSONObject fig, String name) {
-		JSONArray ptArray = fig.getJSONArray("Points");
-		for (Object item: ptArray) {
-			JSONObject jObj = (JSONObject) item;
-			if (jObj.getString("name").equals(name)) {
-				Double x = jObj.getDouble("x");
-				Double y = jObj.getDouble("y");
-				PointNode pt = new PointNode(name, x, y);
-				return pt;
-			}
-		}
-		return null;
 	}
 }

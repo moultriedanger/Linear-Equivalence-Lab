@@ -1,6 +1,7 @@
 package input.components;
 import java.util.ArrayList;
 
+import utilities.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -122,17 +123,24 @@ public class SegmentNodeDatabase implements ComponentNode{
 		}
 		return segList;
 	}
+	/* 
+	* Builds a string to describe a figure, uses the figurenode class, pointnode class, and the pointnodedatabase class
+	 *@param stingbuilder is the string that gets built
+	 *@param level is amount of indentations
+	*/
 	@Override
 	public void unparse(StringBuilder sb, int level) {
-		sb.append("\tSegments:\n\t{");
+		sb.append(StringUtilities.indent(level));
+		sb.append("Segments:\n");
+		sb.append(StringUtilities.indent(level));
+		sb.append("{");
 		Set<PointNode> setKey = _adjLists.keySet();
 		for(PointNode pn1: setKey) {
-			sb.append("\n\t\t" + pn1.getName() + " : ");
+			sb.append("\n" + StringUtilities.indent(level+1));
+			sb.append(pn1._name + " : ");
 			for (PointNode pn2: (_adjLists.get(pn1))){
-				sb.append(pn2.getName() + " ");
+				sb.append(pn2._name + " ");
 			}
 		}
-		
 	}
-	
 }

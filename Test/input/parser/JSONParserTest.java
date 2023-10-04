@@ -3,7 +3,7 @@ package input.parser;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.json.JSONObject;
+
 import org.junit.jupiter.api.Test;
 
 import input.components.ComponentNode;
@@ -46,23 +46,23 @@ class JSONParserTest
 		node.unparse(sb, 0);
 		System.out.println(sb.toString());
 	}
-//	@Test
-//	void collinear_line_segments_test()
-//	{
-//		//
-//		// The input String ("single_triangle.json") assumes the file is
-//		// located at the top-level of the project. If you move your input
-//		// files into a folder, update this String with the path:
-//		//                                       e.g., "my_folder/single_triangle.json"
-//		//
-//		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/collinear_line_segments.json");
-//
-//		assertTrue(node instanceof FigureNode);
-//		
-//		StringBuilder sb = new StringBuilder();
-//		node.unparse(sb, 0);
-//		System.out.println(sb.toString());
-//	}
+	@Test
+	void collinear_line_segments_test()
+	{
+		//
+		// The input String ("single_triangle.json") assumes the file is
+		// located at the top-level of the project. If you move your input
+		// files into a folder, update this String with the path:
+		//                                       e.g., "my_folder/single_triangle.json"
+		//
+		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/collinear_line_segments.json");
+
+		assertTrue(node instanceof FigureNode);
+		
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+	}
 	@Test
 	void crossing_symmetric_triangle_test()
 	{
@@ -97,4 +97,48 @@ class JSONParserTest
 		node.unparse(sb, 0);
 		System.out.println(sb.toString());
 	}
+	@Test
+	void dentedtrapezoidtest()
+	{
+		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/dentedtrapezoid.json");
+
+		assertTrue(node instanceof FigureNode);
+		
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+	}
+	@Test
+	void irregular_Hexagon()
+	{
+		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/irregular_Hexagon.json");
+
+		assertTrue(node instanceof FigureNode);
+		
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+	}
+	@Test
+	void parallelogram()
+	{
+		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/parallelogram.json");
+
+		assertTrue(node instanceof FigureNode);
+		
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+	}	
+	@Test
+	void blank()
+	{
+		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/blank.json");
+
+		assertTrue(node instanceof FigureNode);
+		
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+	}	
 }
