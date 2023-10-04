@@ -30,6 +30,7 @@ public class JSONParser
 		// Parsing is accomplished via the JSONTokenizer class.
 		JSONTokener tokenizer = new JSONTokener(str);
 		JSONObject  JSONFigure = (JSONObject)tokenizer.nextValue();
+		if (!JSONFigure.has("Figure")) error("Figure does not exist in JSON file");
 		JSONObject fig = JSONFigure.getJSONObject("Figure");
 		String desc = fig.getString("Description");
 		JSONArray jPoints = fig.getJSONArray("Points");

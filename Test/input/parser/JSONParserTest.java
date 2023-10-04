@@ -130,15 +130,4 @@ class JSONParserTest
 		node.unparse(sb, 0);
 		System.out.println(sb.toString());
 	}	
-	@Test
-	void blank()
-	{
-		ComponentNode node = JSONParserTest.runFigureParseTest("Lib/blank.json");
-
-		assertTrue(node instanceof FigureNode);
-		
-		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
-		System.out.println(sb.toString());
-	}	
 }
