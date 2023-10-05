@@ -1,10 +1,9 @@
 //
 //
-//			   C----B
-//			  /    /
-//			 /	  /
-//			A----B
-//Add another line through the middle
+//			   C------D
+//			  /   /  /
+//			 /	/   /
+//			A------B
 
 {
     "Figure" :

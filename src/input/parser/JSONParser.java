@@ -1,7 +1,4 @@
 package input.parser;
-
-
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -9,7 +6,6 @@ import org.json.JSONTokener;
 import input.components.*;
 import input.components.SegmentNodeDatabase;
 import input.exception.ParseException;
-
 
 public class JSONParser
 {
@@ -32,9 +28,9 @@ public class JSONParser
 		JSONObject  JSONFigure = (JSONObject)tokenizer.nextValue();
 		if (!JSONFigure.has("Figure")) error("Figure does not exist in JSON file");
 		JSONObject fig = JSONFigure.getJSONObject("Figure");
+		
 		String desc = fig.getString("Description");
 		JSONArray jPoints = fig.getJSONArray("Points");
-		
 		PointNodeDatabase pnd = getPND(jPoints);
 		SegmentNodeDatabase snd = handleSegments(pnd,fig);
 		
@@ -74,16 +70,18 @@ public class JSONParser
 		
 		for (int a = 0; a < json_adjLists.length(); a++){
 			
+			//gets a single dictionary in adj list
 			JSONObject dict = json_adjLists.getJSONObject(a);
-	
 			
+			//dictionary key array. Only 1 element
 			JSONArray key = dict.names();
-			//System.out.print(key);
-					
-			JSONObject jObj = dict;
-			JSONArray value = jObj.getJSONArray(key.get(0).toString());
-			for(int i = 0; i<value.length(); i++) {
-				segments.addUndirectedEdge(points.getPoint(key.get(0).toString()), points.getPoint(value.get(i).toString()));
+			
+			//Create array of values associated with key
+			JSONArray values = dict.getJSONArray(key.get(0).toString());
+			
+			for(int i = 0; i<values.length(); i++) {
+				//Create an edge with the key and value
+				segments.addUndirectedEdge(points.getPoint(key.get(0).toString()), points.getPoint(values.get(i).toString()));
 			}
 		}
 		return segments;

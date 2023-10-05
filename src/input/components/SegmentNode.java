@@ -1,7 +1,5 @@
 package input.components;
 
-import input.components.PointNode;
-
 /**
  * Describes a line between 2 points
  * @author Moultrie Dangerfield and Jack Patterson

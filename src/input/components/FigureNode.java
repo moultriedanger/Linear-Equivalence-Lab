@@ -38,8 +38,10 @@ public class FigureNode implements ComponentNode
 		sb.append("Description : " + getDescription() + "\n");
 		sb.append(StringUtilities.indent(level+1));
 		sb.append("Points:\n" + StringUtilities.indent(level+1) + "{\n");
+		
 		_points.unparse(sb, level+1);
 		_segments.unparse(sb, level+1);
+		
 		sb.append("\n" + StringUtilities.indent(level+1) + "}\n}");
 	}
 	

@@ -5,10 +5,6 @@ import utilities.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import input.components.PointNode;
 
 import java.util.Set;
 /**
@@ -134,6 +130,7 @@ public class SegmentNodeDatabase implements ComponentNode{
 		sb.append("Segments:\n");
 		sb.append(StringUtilities.indent(level));
 		sb.append("{");
+		
 		Set<PointNode> setKey = _adjLists.keySet();
 		for(PointNode pn1: setKey) {
 			sb.append("\n" + StringUtilities.indent(level+1));

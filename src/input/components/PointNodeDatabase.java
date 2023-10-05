@@ -67,12 +67,8 @@ public class PointNodeDatabase implements ComponentNode{
 	*/
 	public String getName(double x, double y) {
 		
-		for(PointNode p: _points) {
-			if(p.getX() == x && p.getY() == y) {
-				return p.getName();
-			}
-		}
-		return null;
+		PointNode p=new PointNode(x, y);
+		return getName(p);
 	}
 	/*
 	* Checks if the LinkedHashSet contains the Pointnode in the parameter
