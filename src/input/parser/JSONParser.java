@@ -37,7 +37,6 @@ public class JSONParser
 		FigureNode f = new FigureNode(desc, pnd, snd);
 		return f;
 	}
-    // TODO: Build the whole AST, check for return class object, and return the root
 
 	/*
 	 * Creates a pointnodedatabse using from the JSON file

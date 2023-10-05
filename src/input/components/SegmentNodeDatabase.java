@@ -101,7 +101,7 @@ public class SegmentNodeDatabase implements ComponentNode{
 	 * Creates a list of every connection between pointNodes without repitition.
 	 *@return List<SegmentNode>
 	 */
-	public List<SegmentNode> asUnigueSegmentList(){
+	public List<SegmentNode> asUniqueSegmentList(){
 		List<SegmentNode> segList = new ArrayList<>();
 		if(_adjLists.isEmpty()){
 			return segList;
