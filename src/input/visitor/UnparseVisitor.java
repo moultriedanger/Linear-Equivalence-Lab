@@ -5,9 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import input.components.*;
-import input.components.point.*;
-import input.components.segment.SegmentNode;
-import input.components.segment.SegmentNodeDatabase;
+
 
 //
 // This file implements a Visitor (design pattern) with 

@@ -3,9 +3,6 @@ package input.builder;
 import java.util.List;
 
 import input.components.*;
-//import input.components.point.*;
-//import input.components.segment.SegmentNode;
-//import input.components.segment.SegmentNodeDatabase;
 
 /*
  * A Builder design pattern for constructing a geometry hierarchy.
@@ -26,7 +23,7 @@ public class DefaultBuilder
     
     public SegmentNodeDatabase buildSegmentNodeDatabase()
     {
-        return null;
+        return new SegmentNodeDatabase();
     }
     
     public void addSegmentToDatabase(SegmentNodeDatabase segments, PointNode from, PointNode to)
@@ -36,16 +33,21 @@ public class DefaultBuilder
     
     public SegmentNode buildSegmentNode(PointNode pt1, PointNode pt2)
     {
-        return null;
+        return new SegmentNode(pt1,pt2);
     }
     
     public PointNodeDatabase buildPointDatabaseNode(List<PointNode> points)
     {
-        return null;
+    	PointNodeDatabase pnd = new PointNodeDatabase();
+    	
+    	for(PointNode p: points) {
+    		pnd.put(p);
+    	}
+    	return pnd;
     }
     
     public PointNode buildPointNode(String name, double x, double y)
     {
-        return null;
+        return new PointNode(name, x,y);
     }
 }
