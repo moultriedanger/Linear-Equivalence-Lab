@@ -10,7 +10,7 @@ import input.components.*;
 public class GeometryBuilder extends DefaultBuilder {
 	
 	public GeometryBuilder() {
-	
+		new DefaultBuilder();
 	}
 	
 	@Override
