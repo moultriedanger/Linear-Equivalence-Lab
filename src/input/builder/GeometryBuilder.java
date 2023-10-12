@@ -10,12 +10,11 @@ import input.components.*;
 public class GeometryBuilder extends DefaultBuilder {
 	
 	public GeometryBuilder() {
-		new DefaultBuilder();
+
 	}
 	
 	@Override
 	public FigureNode buildFigureNode(String description, PointNodeDatabase points, SegmentNodeDatabase segments) {
-	
 		
 		return new FigureNode(description, points, segments);
 	}
