@@ -7,6 +7,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import java.util.Set;
+
+import input.visitor.ComponentNodeVisitor;
 /**
  * Allows for us to keep track of the relationships between segmentNodes, using maps
  * @author Moultrie Dangerfield and Jack Patterson
@@ -14,6 +16,7 @@ import java.util.Set;
  */
 public class SegmentNodeDatabase implements ComponentNode{
 	protected HashMap<PointNode, LinkedHashSet<PointNode>> _adjLists;
+	public HashMap<PointNode, LinkedHashSet<PointNode>> getadjList() { return _adjLists; }
 
 	public SegmentNodeDatabase() {
 		_adjLists= new HashMap<PointNode, LinkedHashSet<PointNode>>();
@@ -119,25 +122,8 @@ public class SegmentNodeDatabase implements ComponentNode{
 		}
 		return segList;
 	}
-	/* 
-	* Builds a string to describe a figure, uses the figurenode class, pointnode class, and the pointnodedatabase class
-	 *@param stingbuilder is the string that gets built
-	 *@param level is amount of indentations
-	*/
-	@Override
-	public void unparse(StringBuilder sb, int level) {
-		sb.append(StringUtilities.indent(level));
-		sb.append("Segments:\n");
-		sb.append(StringUtilities.indent(level));
-		sb.append("{");
-		
-		Set<PointNode> setKey = _adjLists.keySet();
-		for(PointNode pn1: setKey) {
-			sb.append("\n" + StringUtilities.indent(level+1));
-			sb.append(pn1._name + " : ");
-			for (PointNode pn2: (_adjLists.get(pn1))){
-				sb.append(pn2._name + " ");
-			}
-		}
+	
+	public Object accept(ComponentNodeVisitor node, Object o) {
+		return node.visitSegmentDatabaseNode(this, o); 
 	}
 }

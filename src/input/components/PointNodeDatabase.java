@@ -3,6 +3,8 @@ package input.components;
 import java.util.ArrayList;
 
 import java.util.LinkedHashSet;
+
+import input.visitor.ComponentNodeVisitor;
 /*
 * Allows us to put PointNode objects in a linkedHashSet.
 *@author Moultrie DangerField and Jack Patterson
@@ -11,6 +13,7 @@ import java.util.LinkedHashSet;
 public class PointNodeDatabase implements ComponentNode{
 	
 	protected LinkedHashSet<PointNode> _points;
+	public LinkedHashSet<PointNode> getPoints() { return _points; }
 	
 	public PointNodeDatabase() {
 		_points = new LinkedHashSet<PointNode>();
@@ -104,16 +107,10 @@ public class PointNodeDatabase implements ComponentNode{
 		PointNode p = new PointNode(x, y);
 		return getPoint(p);	
 	}
-	/*
-	 * Builds a string to describe a figure, uses the figurenode class, the pointnode class, and the segmentnodedatabase class.
-	 *@param stingbuilder is the string that gets built
-	 *@param level is amount of indentations
-	*/
-	@Override
-	public void unparse(StringBuilder sb, int level) {
-		for (PointNode p: _points) {
-			p.unparse(sb, level+1);
-		}	
+	public Object accept(ComponentNodeVisitor node, Object o) {
+		return node.visitPointNodeDatabase(this, o); 
 	}
+
+
 	
 }

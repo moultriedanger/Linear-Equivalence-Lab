@@ -1,6 +1,6 @@
 package input.components;
 
-import utilities.io.StringUtilities;
+import input.visitor.ComponentNodeVisitor;
 import utilities.math.MathUtilities;
 
 /**
@@ -85,10 +85,9 @@ public class PointNode implements ComponentNode
 	 *@param stingbuilder is the string that gets built
 	 *@param level is amount of indentations
 	*/
-	@Override
-	public void unparse(StringBuilder sb, int level) {
-		sb.append(StringUtilities.indent(level));
-		sb.append(toString());
-		
+
+	public Object accept(ComponentNodeVisitor node, Object o) {
+		return node.visitPointNode(this, o); 
 	}
+
 }

@@ -3,12 +3,18 @@ package input.parser;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import input.components.ComponentNode;
 import input.components.FigureNode;
 import input.exception.ParseException;
+import input.visitor.ToJSON;
+import input.visitor.UnparseVisitor;
+import utilities.io.StringUtilities;
 
 class JSONParserTest
 {
@@ -43,8 +49,14 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparse=new UnparseVisitor();
+		unparse.visitFigureNode((FigureNode) node, new AbstractMap.SimpleEntry<StringBuilder, Integer> (sb, 0));
 		System.out.println(sb.toString());
+		
+		ToJSON jsonMaker=new ToJSON();
+		int level=2;
+		JSONObject jason=(JSONObject) jsonMaker.visitFigureNode((FigureNode) node, level);
+		System.out.println(jason.toString(level));
 	}
 	@Test
 	void collinear_line_segments_test()
@@ -54,9 +66,16 @@ class JSONParserTest
 
 		assertTrue(node instanceof FigureNode);
 		
+		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparse=new UnparseVisitor();
+		unparse.visitFigureNode((FigureNode) node, new AbstractMap.SimpleEntry<StringBuilder, Integer> (sb, 0));
 		System.out.println(sb.toString());
+		
+		ToJSON jsonMaker=new ToJSON();
+		int level=2;
+		JSONObject jason=(JSONObject) jsonMaker.visitFigureNode((FigureNode) node, level);
+		System.out.println(jason.toString(level));
 	}
 	@Test
 	void crossing_symmetric_triangle_test()
@@ -67,8 +86,14 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparse=new UnparseVisitor();		
+		unparse.visitFigureNode((FigureNode) node, new AbstractMap.SimpleEntry<StringBuilder, Integer> (sb, 0));
 		System.out.println(sb.toString());
+		
+		ToJSON jsonMaker=new ToJSON();
+		int level=2;
+		JSONObject jason=(JSONObject) jsonMaker.visitFigureNode((FigureNode) node, level);
+		System.out.println(jason.toString(level));
 	}
 	@Test
 	void fully_connected_irregular_polygon_test()
@@ -78,8 +103,14 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparse=new UnparseVisitor();
+		unparse.visitFigureNode((FigureNode) node, new AbstractMap.SimpleEntry<StringBuilder, Integer> (sb, 0));
 		System.out.println(sb.toString());
+		
+		ToJSON jsonMaker=new ToJSON();
+		int level=2;
+		JSONObject jason=(JSONObject) jsonMaker.visitFigureNode((FigureNode) node, level);
+		System.out.println(jason.toString(level));
 	}
 	@Test
 	void dentedtrapezoidtest()
@@ -89,8 +120,14 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparse=new UnparseVisitor();
+		unparse.visitFigureNode((FigureNode) node, new AbstractMap.SimpleEntry<StringBuilder, Integer> (sb, 0));
 		System.out.println(sb.toString());
+		
+		ToJSON jsonMaker=new ToJSON();
+		int level=2;
+		JSONObject jason=(JSONObject) jsonMaker.visitFigureNode((FigureNode) node, level);
+		System.out.println(jason.toString(level));
 	}
 	@Test
 	void irregular_Hexagon()
@@ -100,8 +137,15 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparse=new UnparseVisitor();
+		unparse.visitFigureNode((FigureNode) node, new AbstractMap.SimpleEntry<StringBuilder, Integer> (sb, 0));
 		System.out.println(sb.toString());
+		
+		
+		ToJSON jsonMaker=new ToJSON();
+		int level=2;
+		JSONObject jason=(JSONObject) jsonMaker.visitFigureNode((FigureNode) node, level);
+		System.out.println(jason.toString(level));
 	}
 	@Test
 	void parallelogram()
@@ -111,7 +155,13 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparse=new UnparseVisitor();
+		unparse.visitFigureNode((FigureNode) node, new AbstractMap.SimpleEntry<StringBuilder, Integer> (sb, 0));
 		System.out.println(sb.toString());
+		
+		ToJSON jsonMaker=new ToJSON();
+		int level=2;
+		JSONObject jason=(JSONObject) jsonMaker.visitFigureNode((FigureNode) node, level);
+		System.out.println(jason.toString(level));
 	}	
 }

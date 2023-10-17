@@ -1,10 +1,12 @@
 package input.visitor;
 
 import java.util.AbstractMap;
-import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import input.components.*;
+import utilities.io.StringUtilities;
 
 
 //
@@ -23,17 +25,46 @@ public class UnparseVisitor implements ComponentNodeVisitor
 		StringBuilder sb = pair.getKey();
 		int level = pair.getValue();
 
-        // TODO
+		sb.append("Figure\n{\n");
+		sb.append(StringUtilities.indent(level+1));
+		sb.append("Description : " + node.getDescription() + "\n");
+		sb.append(StringUtilities.indent(level+1));
+		sb.append("Points:\n" + StringUtilities.indent(level+1) + "{\n");
+		
+		node.getPointsDatabase().accept(this, pair);
+		
+		node.getSegments().accept(this, pair);
+		
+		sb.append("\n" + StringUtilities.indent(level+1) + "}\n}");
 
-        return null;
+		
+        return sb;
 	}
 
 	@Override
 	public Object visitSegmentDatabaseNode(SegmentNodeDatabase node, Object o)
 	{
-        // TODO
+		@SuppressWarnings("unchecked")
+		AbstractMap.SimpleEntry<StringBuilder, Integer> pair = (AbstractMap.SimpleEntry<StringBuilder, Integer>)(o); 
+		StringBuilder sb = pair.getKey();
+		int level = pair.getValue();
 		
-        return null;
+		sb.append(StringUtilities.indent(level+1));
+		sb.append("Segments:\n");
+		sb.append(StringUtilities.indent(level+1));
+		sb.append("{");
+		
+		HashMap<PointNode, LinkedHashSet<PointNode>> adjList=node.getadjList();
+		Set<PointNode> setKey = adjList.keySet();
+		for(PointNode pn1: setKey) {
+			sb.append("\n" + StringUtilities.indent(level+2));
+			sb.append(pn1.getName()+ " : ");
+		
+			for (PointNode pn2: (adjList.get(pn1))){
+				sb.append(pn2.getName() + " ");
+			}
+		}
+		return sb;
 	}
 
 	/**
@@ -49,16 +80,29 @@ public class UnparseVisitor implements ComponentNodeVisitor
 	@Override
 	public Object visitPointNodeDatabase(PointNodeDatabase node, Object o)
 	{
-        // TODO
+		@SuppressWarnings("unchecked")
+		AbstractMap.SimpleEntry<StringBuilder, Integer> pair = (AbstractMap.SimpleEntry<StringBuilder, Integer>)(o); 
+		StringBuilder sb = pair.getKey();
+		LinkedHashSet<PointNode> points=node.getPoints();
+		for (PointNode p: points) {
+			p.accept(this, pair);
+		}
+		sb.append(StringUtilities.indent(1));
+		sb.append("}\n");
+		return sb;
 		
-        return null;
 	}
 	
 	@Override
 	public Object visitPointNode(PointNode node, Object o)
 	{
-        // TODO
-        
-        return null;
+		@SuppressWarnings("unchecked")
+		AbstractMap.SimpleEntry<StringBuilder, Integer> pair = (AbstractMap.SimpleEntry<StringBuilder, Integer>)(o); 
+		StringBuilder sb = pair.getKey();
+		int level=pair.getValue();
+		
+		sb.append(StringUtilities.indent(level+2));
+		sb.append(node.toString());
+		return sb;
 	}
 }
