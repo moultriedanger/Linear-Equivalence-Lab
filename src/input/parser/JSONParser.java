@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import input.builder.DefaultBuilder;
-import input.builder.GeometryBuilder;
 import input.components.*;
 import input.components.SegmentNodeDatabase;
 import input.exception.ParseException;

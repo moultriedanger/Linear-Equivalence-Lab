@@ -1,12 +1,9 @@
 package input.visitor;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.json.JSONArray;
@@ -14,7 +11,6 @@ import org.json.JSONObject;
 
 import input.components.*;
 import input.parser.JSON_Constants;
-import utilities.io.StringUtilities;
 
 
 public class ToJSON implements ComponentNodeVisitor
@@ -28,8 +24,8 @@ public class ToJSON implements ComponentNodeVisitor
 		
 		cont.put(JSON_Constants.JSON_DESCRIPTION, node.getDescription());
 
-		cont.put(JSON_Constants.JSON_POINT_S, visitPointNodeDatabase(node.getPointsDatabase(), 0));
-		cont.put(JSON_Constants.JSON_SEGMENTS, visitSegmentDatabaseNode(node.getSegments(), 0));
+		cont.put(JSON_Constants.JSON_POINT_S, visitPointNodeDatabase(node.getPointsDatabase(), level));
+		cont.put(JSON_Constants.JSON_SEGMENTS, visitSegmentDatabaseNode(node.getSegments(), level));
 
 		fig.put(JSON_Constants.JSON_FIGURE, cont);
 		
