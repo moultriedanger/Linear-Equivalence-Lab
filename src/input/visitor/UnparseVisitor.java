@@ -88,7 +88,7 @@ public class UnparseVisitor implements ComponentNodeVisitor
 		for (PointNode p: points) {
 			p.accept(this, pair);
 		}
-		sb.append(StringUtilities.indent(level));
+		sb.append(StringUtilities.indent(level+1));
 		sb.append("}\n");
 		return sb;
 		
