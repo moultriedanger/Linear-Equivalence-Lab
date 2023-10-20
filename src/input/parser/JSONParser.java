@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import input.builder.DefaultBuilder;
+import input.builder.GeometryBuilder;
 import input.components.*;
 import input.components.SegmentNodeDatabase;
 import input.exception.ParseException;
@@ -24,6 +25,7 @@ public class JSONParser
 	private void error(String message)
 	{
 		throw new ParseException("Parse error: " + message);
+		
 	}
 
 	public ComponentNode parse(String str) throws ParseException
@@ -39,7 +41,7 @@ public class JSONParser
 		
 		PointNodeDatabase pnd = getPND(jPoints);
 		
-		SegmentNodeDatabase snd = _builder.buildSegmentNodeDatabase();
+		SegmentNodeDatabase snd = handleSegments(pnd, fig);
 		
 		return _builder.buildFigureNode(desc, pnd, snd);
 	}

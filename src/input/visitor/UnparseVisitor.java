@@ -83,11 +83,12 @@ public class UnparseVisitor implements ComponentNodeVisitor
 		@SuppressWarnings("unchecked")
 		AbstractMap.SimpleEntry<StringBuilder, Integer> pair = (AbstractMap.SimpleEntry<StringBuilder, Integer>)(o); 
 		StringBuilder sb = pair.getKey();
+		int level=pair.getValue();
 		LinkedHashSet<PointNode> points=node.getPoints();
 		for (PointNode p: points) {
 			p.accept(this, pair);
 		}
-		sb.append(StringUtilities.indent(1));
+		sb.append(StringUtilities.indent(level));
 		sb.append("}\n");
 		return sb;
 		

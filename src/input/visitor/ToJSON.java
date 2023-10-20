@@ -25,11 +25,14 @@ public class ToJSON implements ComponentNodeVisitor
 		JSONObject fig=new JSONObject();
 		int level=0;
 		JSONObject cont=new JSONObject(o);
-		cont.put(JSON_Constants.JSON_POINT_S, visitPointNodeDatabase(node.getPointsDatabase(), level));
-		cont.put(JSON_Constants.JSON_SEGMENTS, visitSegmentDatabaseNode(node.getSegments(), level));
-		cont.put(JSON_Constants.JSON_DESCRIPTION, node.getDescription());
 		
+		cont.put(JSON_Constants.JSON_DESCRIPTION, node.getDescription());
+
+		cont.put(JSON_Constants.JSON_POINT_S, visitPointNodeDatabase(node.getPointsDatabase(), 0));
+		cont.put(JSON_Constants.JSON_SEGMENTS, visitSegmentDatabaseNode(node.getSegments(), 0));
+
 		fig.put(JSON_Constants.JSON_FIGURE, cont);
+		
 		
 		return fig;
 	}
@@ -71,7 +74,7 @@ public class ToJSON implements ComponentNodeVisitor
 		point.put(JSON_Constants.JSON_X, node.getX());
 		point.put(JSON_Constants.JSON_Y, node.getY());
 		return point;		
-	}
+	} 
 
 	@Override
 	public Object visitPointNodeDatabase(PointNodeDatabase node, Object o) {

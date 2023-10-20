@@ -9,6 +9,7 @@ import java.util.AbstractMap.SimpleEntry;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
+import input.builder.GeometryBuilder;
 import input.components.ComponentNode;
 import input.components.FigureNode;
 import input.exception.ParseException;
@@ -20,7 +21,9 @@ class JSONParserTest
 {
 	public static ComponentNode runFigureParseTest(String filename)
 	{
-		JSONParser parser = new JSONParser();
+		GeometryBuilder g=new GeometryBuilder();
+		
+		JSONParser parser=new JSONParser(g);
 
 		String figureStr = utilities.io.FileUtilities.readFileFilterComments(filename);
 		
@@ -30,7 +33,7 @@ class JSONParserTest
 	@Test
 	void empty_json_string_test()
 	{
-		JSONParser parser = new JSONParser();
+		JSONParser parser = new JSONParser(null);
 
 		assertThrows(ParseException.class, () -> { parser.parse("{}"); });
 	}
@@ -47,6 +50,7 @@ class JSONParserTest
 		ComponentNode node = JSONParserTest.runFigureParseTest("JSON tests/single_triangle.json");
 
 		assertTrue(node instanceof FigureNode);
+		
 		
 		StringBuilder sb = new StringBuilder();
 		UnparseVisitor unparse=new UnparseVisitor();
