@@ -50,7 +50,6 @@ class JSONParserTest
 
 		assertTrue(node instanceof FigureNode);
 		
-		
 		StringBuilder sb = new StringBuilder();
 		UnparseVisitor unparse=new UnparseVisitor();
 		unparse.visitFigureNode((FigureNode) node, new AbstractMap.SimpleEntry<StringBuilder, Integer> (sb, 0));

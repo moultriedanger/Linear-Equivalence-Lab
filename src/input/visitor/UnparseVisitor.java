@@ -8,7 +8,6 @@ import java.util.Set;
 import input.components.*;
 import utilities.io.StringUtilities;
 
-
 //
 // This file implements a Visitor (design pattern) with 
 // the intent of building an unparsed, String representation
@@ -35,9 +34,7 @@ public class UnparseVisitor implements ComponentNodeVisitor
 		
 		node.getSegments().accept(this, pair);
 		
-		sb.append("\n" + StringUtilities.indent(level+1) + "}\n}");
 
-		
         return sb;
 	}
 

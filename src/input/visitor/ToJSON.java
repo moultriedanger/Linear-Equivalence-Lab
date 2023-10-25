@@ -60,12 +60,11 @@ public class ToJSON implements ComponentNodeVisitor
 			}
 		}
 		return uniqueList;
-		
 	}
 
 	@Override
 	public Object visitSegmentNode(SegmentNode node, Object o) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -76,7 +75,7 @@ public class ToJSON implements ComponentNodeVisitor
 		point.put(JSON_Constants.JSON_X, node.getX());
 		point.put(JSON_Constants.JSON_Y, node.getY());
 		return point;		
-	} 
+	}
 
 	@Override
 	public Object visitPointNodeDatabase(PointNodeDatabase node, Object o) {
@@ -87,5 +86,4 @@ public class ToJSON implements ComponentNodeVisitor
 		}
 		return pnd;
 	}
-	
 }
