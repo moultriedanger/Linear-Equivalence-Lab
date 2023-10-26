@@ -2,20 +2,18 @@ package utilities;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import geometry_objects.points.Point;
+
 public class Main {
 
 	public static void main(String[] args) {
 		
-		LinkedList list2 = new LinkedList();
+		Point p1 = new Point(1,1);
+		Point p2 = new Point(1,2);
 		
-		//Adding elements to a list
-		list2.addToBack(50);
-		list2.addToBack(52);
-		list2.addToBack(55);
 		
-		//System.out.println(list2.previous(50));
-	
 		
+		System.out.println(p1.equals(p2));
 	}
 
 }
