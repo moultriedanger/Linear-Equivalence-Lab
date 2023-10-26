@@ -1,5 +1,6 @@
 package geometry_objects.points;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,8 @@ public class PointNamingFactory
 	// "A" and 1 -> "A"
 	// "B" and 3 -> "BBB"
 	//
-	private String _currentName = "A";
+	private char _currentLetter=START_LETTER;
+	private String _currentName = _PREFIX + START_LETTER;
 	private int _numLetters = 1;
 
 	//
@@ -38,7 +40,7 @@ public class PointNamingFactory
 
 	public PointNamingFactory()
 	{
-		// TODO
+		_database=new LinkedHashMap<Point, Point>();
 	}
 
 	/**
@@ -81,7 +83,8 @@ public class PointNamingFactory
 	 */
 	public Point put(double x, double y)
 	{
-		// TODO
+		Point pt=new Point(x,y);
+		return _database.put(pt, pt);
 	}
 
 	/**
@@ -104,7 +107,8 @@ public class PointNamingFactory
 	 */
 	public Point put(String name, double x, double y)
 	{
-		// TODO
+		Point pt=new Point(name, x, y);
+		return _database.put(pt, pt);
 	}    
 
 	/**
@@ -116,11 +120,12 @@ public class PointNamingFactory
 	 */
 	public Point get(double x, double y)
 	{
-		// TODO
+		Point pt=new Point(x,y);
+		return _database.get(pt);
 	}	
 	public Point get(Point pt)
 	{
-		// TODO
+		return _database.get(pt);
 	}
 
 	/**
@@ -128,8 +133,12 @@ public class PointNamingFactory
 	 * @param y -- single coordinate
 	 * @return simple containment; no updating
 	 */
-	public boolean contains(double x, double y) { /* TODO */ }
-	public boolean contains(Point p) { /* TODO */ }
+	public boolean contains(double x, double y) { 
+		Point pt=new Point(x,y);
+		return _database.containsKey(pt);
+	}
+	
+	public boolean contains(Point p) { return _database.containsKey(p);}
 
 	/**
 	 * Constructs the next (complete with prefix) generated name.
@@ -142,7 +151,7 @@ public class PointNamingFactory
 	 */
 	private String getCurrentName()
 	{
-        // TODO
+        return _currentName;
 	}
 
 	/**
@@ -151,7 +160,15 @@ public class PointNamingFactory
 	 */
 	private void updateName()
 	{
-        // TODO
+        if (getCurrentName().equals(END_LETTER)) _numLetters++;
+        _currentLetter++;
+        String letters=""+_currentLetter;
+        if (_numLetters>1) {
+        	for (int i=1;i<_numLetters;i++) {
+        		letters=letters+_currentLetter;
+        	}
+        }
+        _currentName=_PREFIX + letters;
 	}
 
 	/**
@@ -159,7 +176,7 @@ public class PointNamingFactory
 	 */
 	public  Set<Point> getAllPoints()
 	{
-        // TODO
+        return _database.keySet();
 	}
 
 	public void clear() { _database.clear(); }
@@ -168,6 +185,11 @@ public class PointNamingFactory
 	@Override
 	public String toString()
 	{
-        // TODO
+		String stringBuilder = "";
+		Set<Point> points = getAllPoints();
+		for(Point p: points) {
+			stringBuilder += p.getName() + "(" + p.getX() + ", " + p.getY() + ")" + " ";
+		}
+		return stringBuilder;
 	}
 }
