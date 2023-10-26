@@ -48,7 +48,10 @@ public class PointNamingFactory
 	 */
 	public PointNamingFactory(List<Point> points)
 	{
-		// TODO
+		_database=new LinkedHashMap<Point, Point>();
+		for(Point p: points) {
+			_database.put(p, p);
+		}
 	}
 
 	/**
@@ -62,7 +65,8 @@ public class PointNamingFactory
 	 */
 	public Point put(Point pt)
 	{
-		// TODO
+		_database.put(pt, pt);
+		return pt;
 	}
 
 	/**

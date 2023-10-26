@@ -1,6 +1,8 @@
 package geometry_objects.points;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,12 +30,12 @@ public class PointDatabase
     
 	public PointDatabase()
 	{
-        // TODO
+        _factory=new PointNamingFactory();
 	}
 
 	public PointDatabase(List<Point> points)
 	{
-        // TODO
+		_factory=new PointNamingFactory(points);
 	}
 
 	public int size() { return _factory.size(); }
@@ -43,7 +45,7 @@ public class PointDatabase
 	 */
 	public void put(String name, double x, double y)
 	{
-        // TODO
+        _factory.put(name, x, y);
 	}
 
 	/**
@@ -54,11 +56,11 @@ public class PointDatabase
 	 */
 	public String getName(double x, double y)
 	{
-        // TODO
+        return _factory.get(x, y);
 	}
 	public String getName(Point pt)
 	{
-        // TODO
+        _factory.get(pt);
 	}
 
 	/**
@@ -69,7 +71,7 @@ public class PointDatabase
 	 */
 	public Point getPoint(String name)
 	{
-        // TODO
+        _factory.get
 	}
 
 	/**
