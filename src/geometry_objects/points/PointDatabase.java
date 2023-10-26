@@ -56,11 +56,11 @@ public class PointDatabase
 	 */
 	public String getName(double x, double y)
 	{
-        return _factory.get(x, y);
+        return _factory.get(x, y).getName();
 	}
 	public String getName(Point pt)
 	{
-        _factory.get(pt);
+        return _factory.get(pt).getName();
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class PointDatabase
 	 */
 	public Point getPoint(String name)
 	{
-        _factory.get
+        
 	}
 
 	/**
