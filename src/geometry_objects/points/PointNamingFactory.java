@@ -51,7 +51,7 @@ public class PointNamingFactory
 	{
 		_database=new LinkedHashMap<Point, Point>();
 		for(Point p: points) {
-			_database.put(p, p);
+			put(p);
 		}
 	}
 
@@ -66,8 +66,13 @@ public class PointNamingFactory
 	 */
 	public Point put(Point pt)
 	{
-		_database.put(pt, pt);
-		return pt;
+		if (!pt.isUnnamed()){
+			_database.put(pt, pt);
+			return pt;
+		}
+		Point newpt=new Point(getCurrentName(), pt.getX(), pt.getY());
+		_database.put(newpt, newpt);
+		return newpt;
 	}
 
 	/**
@@ -82,7 +87,7 @@ public class PointNamingFactory
 	 */
 	public Point put(double x, double y)
 	{
-		Point pt=new Point(x,y);
+		Point pt=new Point(getCurrentName(),x,y);
 		return _database.put(pt, pt);
 	}
 
@@ -107,7 +112,7 @@ public class PointNamingFactory
 	public Point put(String name, double x, double y)
 	{
 		Point pt=new Point(name, x, y);
-		return _database.put(pt, pt);
+		return put(pt);
 	}    
 
 	/**
@@ -150,7 +155,10 @@ public class PointNamingFactory
 	 */
 	private String getCurrentName()
 	{
-        return _currentName;
+		String name=_currentName;
+        updateName();
+        return name;
+        
 	}
 
 	/**
@@ -159,8 +167,8 @@ public class PointNamingFactory
 	 */
 	private void updateName()
 	{
-        if (getCurrentName().equals(END_LETTER)) _numLetters++;
-        _currentLetter++;
+        if (_currentName.equals(END_LETTER)) _numLetters++;
+        _currentLetter++; 
         String letters=""+_currentLetter;
         if (_numLetters>1) {
         	for (int i=1;i<_numLetters;i++) {
