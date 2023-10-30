@@ -146,13 +146,6 @@ class TestPointNamingFactory extends PointNamingFactory{
 	void testContainsDoubleDouble() {
 		PointNamingFactory pnf=build();
 		
-		Point pt0=new Point("A", 0,0);
-		Point pt1=new Point(1,0);
-		Point pt2=new Point("B", 78.237828,4);
-		Point pt3=new Point(89,-28.7897);
-		Point pt4=new Point(Math.sqrt(2),-3);
-		Point ptnot=new Point(-76,9);
-		
 		assertTrue (pnf.contains(0, 0));
 		assertTrue (pnf.contains(1, 0));
 		assertTrue (pnf.contains(78.237828,4));
