@@ -2,8 +2,11 @@ package input;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,8 +18,8 @@ import input.components.ComponentNode;
 import input.components.FigureNode;
 import input.components.PointNodeDatabase;
 import input.components.SegmentNodeDatabase;
-import input.components.point.PointNode;
-import input.components.segment.SegmentNode;
+import input.components.PointNode;
+import input.components.SegmentNode;
 import input.parser.JSONParser;
 
 public class InputFacade
@@ -55,11 +58,17 @@ public class InputFacade
 		PointNodeDatabase pnd=fig.getPointsDatabase();
 		SegmentNodeDatabase snd=fig.getSegments();
 		
-		System.out.println(pnd);
-		System.out.println(snd);
+		
+		PointDatabase pd=getPointDatabase(pnd);
 	}
 
-    //	
-	// TODO: implement other support methods to facilitate the toGeometryRepresentation method
-	//
+    private PointDatabase getPointDatabase(PointNodeDatabase pnd){
+    	LinkedHashSet<PointNode> lhs=pnd.getPoints();
+    	List<Point> ptList=new ArrayList<Point>();
+    	for (PointNode pndPT: lhs) {
+    		Point pt=new Point(pndPT.getName(), pndPT.getX(), pndPT.getY());
+    		ptList.add(pt);
+    	}
+    	return new PointDatabase(ptList);
+    }
 }

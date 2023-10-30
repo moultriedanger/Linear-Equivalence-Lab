@@ -27,7 +27,7 @@ class TestPointNamingFactory extends PointNamingFactory{
 			ptList.add(pt4);
 			
 	    	return new PointNamingFactory(ptList);
-	    }
+	  }
 	
 	@Test
 	void testPointNamingFactoryListOfPoint() {
