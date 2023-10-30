@@ -13,6 +13,8 @@ import geometry_objects.Segment;
 import input.builder.GeometryBuilder;
 import input.components.ComponentNode;
 import input.components.FigureNode;
+import input.components.PointNodeDatabase;
+import input.components.SegmentNodeDatabase;
 import input.components.point.PointNode;
 import input.components.segment.SegmentNode;
 import input.parser.JSONParser;
@@ -30,6 +32,7 @@ public class InputFacade
 	 */
 	public static FigureNode extractFigure(String filepath)
 	{
+
 		GeometryBuilder g=new GeometryBuilder();
 		 
 		JSONParser parser=new JSONParser(g);
@@ -49,7 +52,11 @@ public class InputFacade
 	 */
 	public static Map.Entry<PointDatabase, Set<Segment>> toGeometryRepresentation(FigureNode fig)
 	{
+		PointNodeDatabase pnd=fig.getPointsDatabase();
+		SegmentNodeDatabase snd=fig.getSegments();
 		
+		System.out.println(pnd);
+		System.out.println(snd);
 	}
 
     //	
