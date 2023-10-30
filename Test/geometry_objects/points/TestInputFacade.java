@@ -18,7 +18,6 @@ class TestInputFacade extends InputFacade{
 		
 		fn = extractFigure(file);
 		
-		System.out.println(fn.toString());
+		//System.out.println(fn.toString());
 	}
-
 }

@@ -30,7 +30,7 @@ public class PointDatabase
     
 	public PointDatabase()
 	{
-        _factory=new PointNamingFactory();
+        _factory = new PointNamingFactory();
 	}
 
 	public PointDatabase(List<Point> points)
