@@ -56,13 +56,15 @@ public class PointDatabase
 	 */
 	public String getName(double x, double y)
 	{
+
 		 return _factory.get(x, y).getName();
         
 	}
+	
 	public String getName(Point pt)
 	{
-		
-		return _factory.get(pt).getName();
+        return _factory.get(pt).getName();
+
 	}
 
 	/**
@@ -73,6 +75,7 @@ public class PointDatabase
 	 */
 	public Point getPoint(String name)
 	{
+
 		if (name == null) return null;
 		
         Set<Point> pointSet = _factory.getAllPoints();
@@ -84,7 +87,6 @@ public class PointDatabase
         }
         return null;
 	}
-
 	/**
 	 * Given a point, acquire the stored database object; facilitates
 	 * singular objects and mitigates lingering copies of points.
