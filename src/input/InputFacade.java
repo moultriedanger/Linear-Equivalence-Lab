@@ -25,12 +25,18 @@ public class InputFacade
 	 *     Acquries an input file string.
 	 *     Parses the file.
      *
-	 * @param filepath -- the path/name defining the input file
+	 * @param filepath the path/name defining the input file
 	 * @return a FigureNode object corresponding to the input file.
 	 */
 	public static FigureNode extractFigure(String filepath)
 	{
-        // TODO
+		GeometryBuilder g=new GeometryBuilder();
+		 
+		JSONParser parser=new JSONParser(g);
+	
+		String figureStr = utilities.io.FileUtilities.readFileFilterComments(filepath);
+		
+		return (FigureNode) parser.parse(figureStr);
 	}
 	
 	/**
@@ -43,7 +49,7 @@ public class InputFacade
 	 */
 	public static Map.Entry<PointDatabase, Set<Segment>> toGeometryRepresentation(FigureNode fig)
 	{
-		// TODO
+		
 	}
 
     //	
