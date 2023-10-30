@@ -56,11 +56,13 @@ public class PointDatabase
 	 */
 	public String getName(double x, double y)
 	{
-        return _factory.get(x, y);
+		 return _factory.get(x, y).getName();
+        
 	}
 	public String getName(Point pt)
 	{
-        _factory.get(pt);
+		
+		return _factory.get(pt).getName();
 	}
 
 	/**
@@ -71,7 +73,16 @@ public class PointDatabase
 	 */
 	public Point getPoint(String name)
 	{
-        _factory.get
+		if (name == null) return null;
+		
+        Set<Point> pointSet = _factory.getAllPoints();
+        
+        for(Point p: pointSet) {
+        	if(name == p.getName()) {
+        		return p;
+        	}
+        }
+        return null;
 	}
 
 	/**
@@ -83,8 +94,9 @@ public class PointDatabase
 	 */
 	public Point getPoint(Point pt)
 	{
-        // TODO
-	}
+        return _factory.get(pt);
+        }
+     
 
 	/**
 	 * Given a raw point (x, y), acquire the stored database object.
@@ -94,6 +106,6 @@ public class PointDatabase
 	 */
 	public Point getPoint(double x, double y)
 	{
-        // TODO
+        return _factory.get(x, y);
 	}
 }
