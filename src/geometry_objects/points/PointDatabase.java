@@ -110,4 +110,7 @@ public class PointDatabase
 	{
         return _factory.get(x, y);
 	}
+	public String toString() {
+		return _factory.toString();
+	}
 }

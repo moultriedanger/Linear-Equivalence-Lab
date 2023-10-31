@@ -84,4 +84,7 @@ public class Segment extends GeometricObject
 	{
 		return _point1.hashCode() +_point2.hashCode();
 	}
+	public String toString() {
+		return "("+_point1.getName()+" : "+_point2.getName()+")";
+	}
 }

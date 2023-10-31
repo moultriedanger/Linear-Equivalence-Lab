@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +24,7 @@ import input.components.SegmentNodeDatabase;
 import input.components.PointNode;
 import input.components.SegmentNode;
 import input.parser.JSONParser;
+import utilities.io.StringUtilities;
 
 public class InputFacade
 {
@@ -58,11 +62,15 @@ public class InputFacade
 		PointNodeDatabase pnd=fig.getPointsDatabase();
 		SegmentNodeDatabase snd=fig.getSegments();
 		
-		
 		PointDatabase pd=getPointDatabase(pnd);
+		Set<Segment> segSet=getSegments(snd, pd);
+		
+		SimpleEntry<PointDatabase, Set<Segment>> geoMap= new AbstractMap.SimpleEntry<>(pd, segSet);
+		
+		return geoMap;
 	}
 
-    private PointDatabase getPointDatabase(PointNodeDatabase pnd){
+    private static PointDatabase getPointDatabase(PointNodeDatabase pnd){
     	LinkedHashSet<PointNode> lhs=pnd.getPoints();
     	List<Point> ptList=new ArrayList<Point>();
     	for (PointNode pndPT: lhs) {
@@ -70,5 +78,20 @@ public class InputFacade
     		ptList.add(pt);
     	}
     	return new PointDatabase(ptList);
+    }
+    
+    private static Set<Segment> getSegments(SegmentNodeDatabase snd, PointDatabase pd){
+    	HashMap<PointNode, LinkedHashSet<PointNode>> adjList=snd.getadjList();
+		Set<PointNode> setKey = adjList.keySet();
+		Set<Segment> segSet= new LinkedHashSet<>();
+		for(PointNode pn1: setKey) {
+			Point pt1=pd.getPoint(pn1.getX(), pn1.getY());
+			for (PointNode pn2: (adjList.get(pn1))){
+				Point pt2=pd.getPoint(pn2.getX(), pn2.getY());
+				Segment seg=new Segment(pt1, pt2);
+				segSet.add(seg);
+			}
+		}
+		return segSet;
     }
 }

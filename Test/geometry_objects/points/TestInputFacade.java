@@ -3,9 +3,12 @@ package geometry_objects.points;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.AbstractMap;
+import java.util.Set;
+import java.util.AbstractMap.SimpleEntry;
 
 import org.junit.jupiter.api.Test;
 
+import geometry_objects.Segment;
 import input.InputFacade;
 import input.components.FigureNode;
 import input.visitor.UnparseVisitor;
@@ -21,17 +24,16 @@ class TestInputFacade{
 		
 		fn = InputFacade.extractFigure(file);
 		
-<<<<<<< Updated upstream
-		//System.out.println(fn.toString());
-=======
-		assertTrue(fn instanceof FigureNode);
+		SimpleEntry<PointDatabase, Set<Segment>> geoMap=(SimpleEntry<PointDatabase, Set<Segment>>) InputFacade.toGeometryRepresentation(fn);
 		
-		StringBuilder sb = new StringBuilder();
-		UnparseVisitor unparse=new UnparseVisitor();
-		unparse.visitFigureNode((FigureNode) fn, new AbstractMap.SimpleEntry<StringBuilder, Integer> (sb, 0));
-		System.out.println(sb.toString());
+		System.out.println(geoMap.getKey().toString());
+		System.out.println(geoMap.getValue().toString());
 		
-		System.out.print(fn.toString());
->>>>>>> Stashed changes
+		
+//		System.out.print(fn.toString());
 	}
+//	@Test
+//	public void testToGeometryRepresentation() {
+//		
+//	}
 }
