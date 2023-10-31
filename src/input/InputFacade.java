@@ -84,7 +84,8 @@ public class InputFacade
     	HashMap<PointNode, LinkedHashSet<PointNode>> adjList=snd.getadjList();
 		Set<PointNode> setKey = adjList.keySet();
 		Set<Segment> segSet= new LinkedHashSet<>();
-		for(PointNode pn1: setKey) {
+		List<PointNode> ptList=new ArrayList<PointNode>(setKey);
+		for(PointNode pn1: ptList) {
 			Point pt1=pd.getPoint(pn1.getX(), pn1.getY());
 			for (PointNode pn2: (adjList.get(pn1))){
 				Point pt2=pd.getPoint(pn2.getX(), pn2.getY());
