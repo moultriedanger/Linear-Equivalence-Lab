@@ -7,7 +7,7 @@ import utilities.math.MathUtilities;
  * 
  * Points are ordered lexicographically (thus implementing the Comparable interface)
  * 
- * @author xxx
+ * @author Moultrie Dangerfield
  */
 public class Point implements Comparable<Point>
 {
@@ -104,7 +104,6 @@ public class Point implements Comparable<Point>
 	@Override
 	public boolean equals(Object obj)
 	{
-		//cast obj to a point object
 		Point p2 = (Point) obj;
 		
 		if (LexicographicOrdering(this, p2) == 0) return true;

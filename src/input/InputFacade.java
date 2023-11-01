@@ -71,22 +71,28 @@ public class InputFacade
 	}
 
     private static PointDatabase getPointDatabase(PointNodeDatabase pnd){
-    	LinkedHashSet<PointNode> lhs=pnd.getPoints();
+    	
+    	LinkedHashSet<PointNode> ptSet = pnd.getPoints();
     	List<Point> ptList=new ArrayList<Point>();
-    	for (PointNode pndPT: lhs) {
-    		Point pt=new Point(pndPT.getName(), pndPT.getX(), pndPT.getY());
+    	
+    	for (PointNode pndPT: ptSet) {
+    		Point pt = new Point(pndPT.getName(), pndPT.getX(), pndPT.getY());
     		ptList.add(pt);
     	}
     	return new PointDatabase(ptList);
     }
     
+    
     private static Set<Segment> getSegments(SegmentNodeDatabase snd, PointDatabase pd){
-    	HashMap<PointNode, LinkedHashSet<PointNode>> adjList=snd.getadjList();
+    	
+    	HashMap<PointNode, LinkedHashSet<PointNode>> adjList = snd.getadjList();
 		Set<PointNode> setKey = adjList.keySet();
-		Set<Segment> segSet= new LinkedHashSet<>();
-		List<PointNode> ptList=new ArrayList<PointNode>(setKey);
+		Set<Segment> segSet = new LinkedHashSet<>();
+		List<PointNode> ptList = new ArrayList<PointNode>(setKey);
+		
 		for(PointNode pn1: ptList) {
 			Point pt1=pd.getPoint(pn1.getX(), pn1.getY());
+			
 			for (PointNode pn2: (adjList.get(pn1))){
 				Point pt2=pd.getPoint(pn2.getX(), pn2.getY());
 				Segment seg=new Segment(pt1, pt2);

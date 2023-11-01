@@ -15,7 +15,7 @@ import java.util.Set;
  * 
  * This is a Decorator class with the PointNamingFactory in the background
  * 
- * @author Moultrie
+ * @author Moultrie, Jack, and Jalen
  */
 public class PointDatabase
 {
@@ -57,14 +57,12 @@ public class PointDatabase
 	public String getName(double x, double y)
 	{
 
-		 return _factory.get(x, y).getName();
-        
+		 return _factory.get(x, y).getName();   
 	}
 	
 	public String getName(Point pt)
 	{
         return _factory.get(pt).getName();
-
 	}
 
 	/**
@@ -97,7 +95,7 @@ public class PointDatabase
 	public Point getPoint(Point pt)
 	{
         return _factory.get(pt);
-        }
+    }
      
 
 	/**
