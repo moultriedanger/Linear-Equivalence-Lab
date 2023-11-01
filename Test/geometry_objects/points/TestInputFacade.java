@@ -1,5 +1,6 @@
 package geometry_objects.points;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,11 +39,11 @@ class TestInputFacade{
 		Point c = new Point("C", 1,0);
 		Point dummyPoint = new Point("Bob", 0, 4);
 		
-		assertTrue (a.equals(pd.getPoint(a)));
-		assertTrue (b.equals(pd.getPoint(b)));
-		assertTrue (c.equals(pd.getPoint(c)));
+		assertTrue ("Point A does not exist", a.equals(pd.getPoint(a)));
+		assertTrue ("Point B does not exist", b.equals(pd.getPoint(b)));
+		assertTrue ("Point C does not exist", c.equals(pd.getPoint(c)));
 		
-		assertEquals (null, pd.getPoint(dummyPoint));
+		assertEquals ("Test point has content", null, pd.getPoint(dummyPoint));
 		
 		Set<Segment> segSet = geoMap.getValue();
 		Segment ab = new Segment(a, b);
@@ -52,13 +53,13 @@ class TestInputFacade{
 		
 		Segment dummySeg = new Segment(a, dummyPoint);
 		
-		assertTrue (segSet.contains(ab));
-		assertTrue (segSet.contains(ac));
+		assertTrue ("The segment AB is not in segSet", segSet.contains(ab));
+		assertTrue ("The segment AC is not in segSet", segSet.contains(ac));
 		
 		//Test undirected edge
-		assertTrue (segSet.contains(ba));
+		assertTrue ("The undirected edge BA is not in segSet", segSet.contains(ba));
 		
-		assertFalse (segSet.contains(dummySeg));
+		assertFalse ("The dummy undirected edge is not in segSet", segSet.contains(dummySeg));
 	}
 	@Test
 	public void testCollinearLineSegments() {
@@ -81,10 +82,10 @@ class TestInputFacade{
 		
 		Point dummyPoint = new Point("Bob", 0, 4);
 		
-		assertTrue (a.equals(pd.getPoint(a)));
-		assertTrue (b.equals(pd.getPoint(b)));
-		assertTrue (d.equals(pd.getPoint(d)));
-		assertTrue (f.equals(pd.getPoint(f)));
+		assertTrue ("Point A does not exist", a.equals(pd.getPoint(a)));
+		assertTrue ("Point B does not exist", b.equals(pd.getPoint(b)));
+		assertTrue ("Point D does not exist", d.equals(pd.getPoint(d)));
+		assertTrue ("Point F does not exist", f.equals(pd.getPoint(f)));
 		
 		assertFalse (dummyPoint.equals(pd.getPoint(a)));
 		
