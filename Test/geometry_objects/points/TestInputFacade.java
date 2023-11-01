@@ -1,5 +1,7 @@
 package geometry_objects.points;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Set;
@@ -93,12 +95,12 @@ class TestInputFacade{
 		Segment af = new Segment(a, f);
 		Segment cf = new Segment(c, f);
 		
-		assertTrue (segSet.contains(ab));
-		assertTrue (segSet.contains(bc));
-		assertTrue (segSet.contains(cd));
+		assertTrue ("testDentedTrapezoid: segment set is inaccurate", segSet.contains(ab));
+		assertTrue ("testDentedTrapezoid: segment set is inaccurate", segSet.contains(bc));
+		assertTrue ("testDentedTrapezoid: segment set is inaccurate", segSet.contains(cd));
 		
-		assertFalse (segSet.contains(af));
-		assertFalse (segSet.contains(cf));
+		assertFalse ("testDentedTrapezoid: segment set is always true", segSet.contains(af));
+		assertFalse ("testDentedTrapezoid: segment set is always true", segSet.contains(cf));
 		
 	}
 
@@ -123,15 +125,15 @@ class TestInputFacade{
 		
 		Point dummyPoint = new Point("Bob", 0, 4);
 		
-		assertTrue (a.equals(pd.getPoint(a)));
-		assertTrue (b.equals(pd.getPoint(b)));
-		assertTrue (c.equals(pd.getPoint(c)));
-		assertTrue (d.equals(pd.getPoint(d)));
-		assertTrue (e.equals(pd.getPoint(e)));
+		assertTrue ("testDentedTrapezoid: pointDatabase is inaccurate", a.equals(pd.getPoint(a)));
+		assertTrue ("testDentedTrapezoid: pointDatabase is inaccurate", b.equals(pd.getPoint(b)));
+		assertTrue ("testDentedTrapezoid: pointDatabase is inaccurate", c.equals(pd.getPoint(c)));
+		assertTrue ("testDentedTrapezoid: pointDatabase is inaccurate", d.equals(pd.getPoint(d)));
+		assertTrue ("testDentedTrapezoid: pointDatabase is inaccurate", e.equals(pd.getPoint(e)));
 		
-		assertFalse (a.equals(pd.getPoint(e)));
-		assertFalse (e.equals(pd.getPoint(d)));
-		assertFalse (dummyPoint.equals(pd.getPoint(c)));
+		assertFalse ("testDentedTrapezoid: pointDatabase is always true", a.equals(pd.getPoint(e)));
+		assertFalse ("testDentedTrapezoid: pointDatabase is always true", e.equals(pd.getPoint(d)));
+		assertFalse ("testDentedTrapezoid: pointDatabase is always true", dummyPoint.equals(pd.getPoint(c)));
 		
 		
 		Set<Segment> segSet = geoMap.getValue();
@@ -145,75 +147,17 @@ class TestInputFacade{
 		
 		Segment cd = new Segment(c, d); //This is in the seg list?
 		
-		assertTrue (segSet.contains(ab));
-		assertTrue (segSet.contains(ae));
-		assertTrue (segSet.contains(bc));
+		assertTrue ("testDentedTrapezoid: segment set is inaccurate",segSet.contains(ab));
+		assertTrue ("testDentedTrapezoid: segment set is inaccurate", segSet.contains(ae));
+		assertTrue ("testDentedTrapezoid: segment set is inaccurate", segSet.contains(bc));
 		
 		
-		assertTrue (segSet.contains(dc));
-		assertTrue (segSet.contains(cd));
+		assertTrue ("testDentedTrapezoid: segment set is inaccurate", segSet.contains(dc));
+		assertTrue ("testDentedTrapezoid: segment set is inaccurate", segSet.contains(cd));
 		
 		
-		assertFalse (segSet.contains(dummy_b));
+		assertFalse ("testDentedTrapezoid: segment set is always true",segSet.contains(dummy_b));
 		
 	}
-//	@Test
-//	public void testFullyConnectedIrregularPolygon() {
-//		
-//		String file = "JSON tests/fully_connected_irregular_polygon.json";
-//		
-//		FigureNode fn;
-//		
-//		fn = InputFacade.extractFigure(file);
-//		
-//		SimpleEntry<PointDatabase, Set<Segment>> geoMap=(SimpleEntry<PointDatabase, Set<Segment>>) InputFacade.toGeometryRepresentation(fn);
-//		
-//		System.out.println();
-//		System.out.println("FullyConnectedIrregularPolygon");
-//		System.out.println(geoMap.getKey().toString());
-//		System.out.println(geoMap.getValue().toString());
-//		
-//		
-////		System.out.print(fn.toString());
-//	}
-//	@Test
-//	public void testIrregularHexagon() {
-//		
-//		String file = "JSON tests/irregular_Hexagon.json";
-//		
-//		FigureNode fn;
-//		
-//		fn = InputFacade.extractFigure(file);
-//		
-//		SimpleEntry<PointDatabase, Set<Segment>> geoMap=(SimpleEntry<PointDatabase, Set<Segment>>) InputFacade.toGeometryRepresentation(fn);
-//		
-//		System.out.println();
-//		System.out.println("IrregularHexagon");
-//		System.out.println(geoMap.getKey().toString());
-//		System.out.println(geoMap.getValue().toString());
-//		
-//		
-////		System.out.print(fn.toString());
-//	}
-//	@Test
-//	public void testParallelogram() {
-//		
-//		String file = "JSON tests/parallelogram.json";
-//		
-//		FigureNode fn;
-//		
-//		fn = InputFacade.extractFigure(file);
-//		
-//		SimpleEntry<PointDatabase, Set<Segment>> geoMap=(SimpleEntry<PointDatabase, Set<Segment>>) InputFacade.toGeometryRepresentation(fn);
-//		
-//		System.out.println();
-//		System.out.println("Parrallelogram");
-//		System.out.println(geoMap.getKey().toString());
-//		System.out.println(geoMap.getValue().toString());
-//		
-//		
-////		System.out.print(fn.toString());
-//	}
-	
 	
 }

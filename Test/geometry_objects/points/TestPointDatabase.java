@@ -1,5 +1,7 @@
 package geometry_objects.points;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -54,12 +56,12 @@ class TestPointDatabase extends PointDatabase {
 		Set<Point> ptSet = pd.getPoints();
 		
 		//The following tests below check if all points were distributed to ptSet from getPoints()
-		assertTrue(ptSet.contains(pt0));
-		assertTrue(ptSet.contains(pt1));
-		assertTrue(ptSet.contains(pt2));
-		assertTrue(ptSet.contains(pt3));
-		assertTrue(ptSet.contains(pt4));
-		assertTrue(ptSet.contains(pt5));
+		assertTrue("Point is not containded in the pointDatabase", ptSet.contains(pt0));
+		assertTrue("Point is not containded in the pointDatabase", ptSet.contains(pt1));
+		assertTrue("Point is not containded in the pointDatabase", ptSet.contains(pt2));
+		assertTrue("Point is not containded in the pointDatabase", ptSet.contains(pt3));
+		assertTrue("Point is not containded in the pointDatabase", ptSet.contains(pt4));
+		assertTrue("Point is not containded in the pointDatabase", ptSet.contains(pt5));
 	
 	}
 
@@ -67,7 +69,7 @@ class TestPointDatabase extends PointDatabase {
 	void testSize() {
 		PointDatabase pd = build();
 		
-		assertEquals(6, pd.size());
+		assertEquals("size is not accurate", 6, pd.size());
 		
 	}
 	@Test
@@ -81,7 +83,7 @@ class TestPointDatabase extends PointDatabase {
 		pd.put("D", 89,-28.7897);
 		pd.put("*_B", Math.sqrt(2),-3);
 		
-		assertEquals (6, pd.size());
+		assertEquals ("size is not accurate", 6, pd.size());
 
 	}
 
@@ -95,8 +97,8 @@ class TestPointDatabase extends PointDatabase {
 		pd.getName(pt0);
 		pd.getName(pt1);
 		
-		assertEquals("*_C", pd.getName(pt0));
-		assertEquals("C", pd.getName(pt1));
+		assertEquals("Name is not accurate", "*_C", pd.getName(pt0));
+		assertEquals("Name is not accurate", "C", pd.getName(pt1));
 	}
 
 	@Test
@@ -109,12 +111,12 @@ class TestPointDatabase extends PointDatabase {
 		Point pt3 = new Point(89,-28.7897);
 		Point pt4 = new Point(Math.sqrt(2),-3);
 		Point pt5 = new Point("C", -51.5432,15.0000);
-		assertEquals (pt0, pd.getPoint("A"));
-		assertEquals (pt1, pd.getPoint("*_A"));
-		assertEquals (pt2, pd.getPoint("B"));
-		assertEquals (pt3, pd.getPoint("*_B"));
-		assertEquals (pt4, pd.getPoint("*_C"));
-		assertEquals (pt5, pd.getPoint("C"));
+		assertEquals ("Name did not get point", pt0, pd.getPoint("A"));
+		assertEquals ("Name did not get point", pt1, pd.getPoint("*_A"));
+		assertEquals ("Name did not get point", pt2, pd.getPoint("B"));
+		assertEquals ("Name did not get point", pt3, pd.getPoint("*_B"));
+		assertEquals ("Name did not get point", pt4, pd.getPoint("*_C"));
+		assertEquals ("Name did not get point", pt5, pd.getPoint("C"));
 	}
 
 	@Test
@@ -128,12 +130,12 @@ class TestPointDatabase extends PointDatabase {
 		Point pt4=new Point(Math.sqrt(2),-3);
 		Point pt5=new Point("C", -51.5432,15.0000);
 		
-		assertEquals (pt0, pd.getPoint(pt0));
-		assertEquals (pt1, pd.getPoint(pt1));
-		assertEquals (pt2, pd.getPoint(pt2));
-		assertEquals (pt3, pd.getPoint(pt3));
-		assertEquals (pt4, pd.getPoint(pt4));
-		assertEquals (pt5, pd.getPoint(pt5));
+		assertEquals ("Point did not get point", pt0, pd.getPoint(pt0));
+		assertEquals ("Point did not get point", pt1, pd.getPoint(pt1));
+		assertEquals ("Point did not get point", pt2, pd.getPoint(pt2));
+		assertEquals ("Point did not get point", pt3, pd.getPoint(pt3));
+		assertEquals ("Point did not get point", pt4, pd.getPoint(pt4));
+		assertEquals ("Point did not get point", pt5, pd.getPoint(pt5));
 	}
 
 	@Test
@@ -147,12 +149,12 @@ class TestPointDatabase extends PointDatabase {
 		Point pt4=new Point(Math.sqrt(2),-3);
 		Point pt5=new Point("C", -51.5432,15.0000);
 		
-		assertEquals (pt0, pd.getPoint(0,0));
-		assertEquals (pt1, pd.getPoint(1,0));
-		assertEquals (pt2, pd.getPoint(78.237828,4));
-		assertEquals (pt3, pd.getPoint(89,-28.7897));
-		assertEquals (pt4, pd.getPoint(Math.sqrt(2),-3));
-		assertEquals (pt5, pd.getPoint(-51.5432,15.0000));
+		assertEquals ("Doubles did not get point", pt0, pd.getPoint(0,0));
+		assertEquals ("Doubles did not get point", pt1, pd.getPoint(1,0));
+		assertEquals ("Doubles did not get point", pt2, pd.getPoint(78.237828,4));
+		assertEquals ("Doubles did not get point", pt3, pd.getPoint(89,-28.7897));
+		assertEquals ("Doubles did not get point", pt4, pd.getPoint(Math.sqrt(2),-3));
+		assertEquals ("Doubles did not get point", pt5, pd.getPoint(-51.5432,15.0000));
 	}
 
 }

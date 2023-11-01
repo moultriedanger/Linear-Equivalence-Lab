@@ -1,5 +1,8 @@
 package geometry_objects.points;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -48,25 +51,25 @@ class TestPointNamingFactory extends PointNamingFactory{
 		Point pt4=new Point(Math.sqrt(2),-3);
 		Point ptnot=new Point(-76,9);
 		
-		assertTrue (pnf.contains(pt0));
-		assertTrue (pnf.contains(pt1));
-		assertTrue (pnf.contains(pt2));
-		assertTrue (pnf.contains(pt3));
-		assertTrue (pnf.contains(pt4));
+		assertTrue ("Point is not contained in the pnf", pnf.contains(pt0));
+		assertTrue ("Point is not contained in the pnf", pnf.contains(pt1));
+		assertTrue ("Point is not contained in the pnf", pnf.contains(pt2));
+		assertTrue ("Point is not contained in the pnf", pnf.contains(pt3));
+		assertTrue ("Point is not contained in the pnf", pnf.contains(pt4));
 		
-		assertEquals (5, pnf.size());
+		assertEquals ("Size is not accurate for PointNamingFactoryListOfPoint", 5, pnf.size());
 		
-		assertTrue (pnf.contains(0, 0));
-		assertTrue (pnf.contains(Math.sqrt(2), -3));
-		assertFalse (pnf.contains(0, 1));
+		assertTrue ("Point is not contained in the pnf", pnf.contains(0, 0));
+		assertTrue ("Point is not contained in the pnf", pnf.contains(Math.sqrt(2), -3));
+		assertFalse ("Point is not contained in the pnf", pnf.contains(0, 1));
 		
-		assertEquals ("A", pnf.get(pt0).getName());
-		assertEquals ("*_A", pnf.get(pt1).getName());
-		assertEquals ("B", pnf.get(pt2).getName());
-		assertEquals ("*_B", pnf.get(pt3).getName());
-		assertEquals ("*_C", pnf.get(pt4).getName());
+		assertEquals ("Name is not accurately implemented", "A", pnf.get(pt0).getName());
+		assertEquals ("Name is not accurately implemented", "*_A", pnf.get(pt1).getName());
+		assertEquals ("Name is not accurately implemented", "B", pnf.get(pt2).getName());
+		assertEquals ("Name is not accurately implemented", "*_B", pnf.get(pt3).getName());
+		assertEquals ("Name is not accurately implemented", "*_C", pnf.get(pt4).getName());
 		
-		assertFalse (pnf.contains(ptnot));
+		assertFalse ("It is just always saying true for PointNamingFactoryListOfPoint", pnf.contains(ptnot));
 	}
 
 	@Test
@@ -84,18 +87,18 @@ class TestPointNamingFactory extends PointNamingFactory{
 		pnf.put(pt3);
 		pnf.put(pt4);
 		
-		assertTrue (pnf.contains(pt0));
-		assertTrue (pnf.contains(pt1));
-		assertTrue (pnf.contains(pt2));
-		assertTrue (pnf.contains(pt3));
-		assertTrue (pnf.contains(pt4));
+		assertTrue ("Put: Point is not contained in the pnf", pnf.contains(pt0));
+		assertTrue ("Put: Point is not contained in the pnf", pnf.contains(pt1));
+		assertTrue ("Put: Point is not contained in the pnf", pnf.contains(pt2));
+		assertTrue ("Put: Point is not contained in the pnf", pnf.contains(pt3));
+		assertTrue ("Put: Point is not contained in the pnf", pnf.contains(pt4));
 		
-		assertEquals (5, pnf.size());
-		assertTrue (pnf.contains(0, 0));
-		assertTrue (pnf.contains(Math.sqrt(2), -3));
-		assertFalse (pnf.contains(0, 1));
+		assertEquals ("Put: size is not accurate", 5, pnf.size());
+		assertTrue ("Put: Point is not contained in the pnf", pnf.contains(0, 0));
+		assertTrue ("Put: Point is not contained in the pnf", pnf.contains(Math.sqrt(2), -3));
+		assertFalse ("Put: is always returning true", pnf.contains(0, 1));
 		
-		assertFalse (pnf.contains(ptnot));
+		assertFalse ("Put: is always returning true",pnf.contains(ptnot));
 	}
 
 	@Test
@@ -107,19 +110,19 @@ class TestPointNamingFactory extends PointNamingFactory{
 		pnf.put(67, 8);
 		
 		
-		assertTrue (pnf.contains(0, 0));
-		assertTrue (pnf.contains(Math.sqrt(2),-98));
-		assertTrue (pnf.contains(-6, -7));
-		assertTrue (pnf.contains(67,8));
+		assertTrue ("Put Double: Point is not contained in the pnf", pnf.contains(0, 0));
+		assertTrue ("Put Double: Point is not contained in the pnf", pnf.contains(Math.sqrt(2),-98));
+		assertTrue ("Put Double: Point is not contained in the pnf", pnf.contains(-6, -7));
+		assertTrue ("Put Double: Point is not contained in the pnf", pnf.contains(67,8));
 		
-		assertEquals ("C", pnf.get(0, 0).getName());
-		assertEquals ("*_A", pnf.get(Math.sqrt(2),-98).getName());
-		assertEquals ("A", pnf.get(-6,-7).getName());
-		assertEquals ("*_B", pnf.get(67, 8).getName());
-		assertEquals (4, pnf.size());
+		assertEquals ("Put Double: Name is not accurate", "C", pnf.get(0, 0).getName());
+		assertEquals ("Put Double: Name is not accurate", "*_A", pnf.get(Math.sqrt(2),-98).getName());
+		assertEquals ("Put Double: Name is not accurate", "A", pnf.get(-6,-7).getName());
+		assertEquals ("Put Double: Name is not accurate", "*_B", pnf.get(67, 8).getName());
+		assertEquals ("Put Double: size is not accurate", 4, pnf.size());
 		
-		assertFalse (pnf.contains(5,5));
-		assertFalse (pnf.contains(0, 1));
+		assertFalse ("Put Double: is always returning true", pnf.contains(5,5));
+		assertFalse ("Put Double: is always returning true", pnf.contains(0, 1));
 		
 	}
 
@@ -133,11 +136,11 @@ class TestPointNamingFactory extends PointNamingFactory{
 		Point pt3=new Point(89,-28.7897);
 		Point pt4=new Point(Math.sqrt(2),-3);
 		
-		assertEquals (pt0, pnf.get(0, 0));
-		assertEquals (pt1, pnf.get(1, 0));
-		assertEquals (pt2, pnf.get(78.237828,4));
-		assertEquals (pt3, pnf.get(89,-28.7897));
-		assertEquals (pt4, pnf.get(Math.sqrt(2),-3));
+		assertEquals ("GetDoubleDoble: is not working", pt0, pnf.get(0, 0));
+		assertEquals ("GetDoubleDoble: is not working", pt1, pnf.get(1, 0));
+		assertEquals ("GetDoubleDoble: is not working", pt2, pnf.get(78.237828,4));
+		assertEquals ("GetDoubleDoble: is not working", pt3, pnf.get(89,-28.7897));
+		assertEquals ("GetDoubleDoble: is not working", pt4, pnf.get(Math.sqrt(2),-3));
 	}
 
 	@Test
@@ -151,24 +154,24 @@ class TestPointNamingFactory extends PointNamingFactory{
 		Point pt4=new Point(Math.sqrt(2),-3);
 		Point ptnot=new Point(-76,9);
 		
-		assertEquals (pt0, pnf.get(pt0));
-		assertEquals (pt1, pnf.get(pt1));
-		assertEquals (pt2, pnf.get(pt2));
-		assertEquals (pt3, pnf.get(pt3));
-		assertEquals (pt4, pnf.get(pt4));
+		assertEquals ("GetPoint: it's not working", pt0, pnf.get(pt0));
+		assertEquals ("GetPoint: it's not working", pt1, pnf.get(pt1));
+		assertEquals ("GetPoint: it's not working", pt2, pnf.get(pt2));
+		assertEquals ("GetPoint: it's not working", pt3, pnf.get(pt3));
+		assertEquals ("GetPoint: it's not working", pt4, pnf.get(pt4));
 	}
 
 	@Test
 	void testContainsDoubleDouble() {
 		PointNamingFactory pnf=build();
 		
-		assertTrue (pnf.contains(0, 0));
-		assertTrue (pnf.contains(1, 0));
-		assertTrue (pnf.contains(78.237828,4));
-		assertTrue (pnf.contains(89,-28.7897));
-		assertTrue (pnf.contains(Math.sqrt(2),-3));
+		assertTrue ("ContainDoubleDouble: it's not working", pnf.contains(0, 0));
+		assertTrue ("ContainDoubleDouble: it's not working", pnf.contains(1, 0));
+		assertTrue ("ContainDoubleDouble: it's not working", pnf.contains(78.237828,4));
+		assertTrue ("ContainDoubleDouble: it's not working", pnf.contains(89,-28.7897));
+		assertTrue ("ContainDoubleDouble: it's not working", pnf.contains(Math.sqrt(2),-3));
 		
-		assertFalse(pnf.contains(-2,-5));
+		assertFalse("ContainDoubleDouble: is always not working", pnf.contains(-2,-5));
 		
 	}
 
@@ -184,14 +187,14 @@ class TestPointNamingFactory extends PointNamingFactory{
 		Point ptnot=new Point(-76,9);
 		Point ptnot2=new Point("F", 9.89,89.872);
 		
-		assertTrue (pnf.contains(pt0));
-		assertTrue (pnf.contains(pt1));
-		assertTrue (pnf.contains(pt2));
-		assertTrue (pnf.contains(pt3));
-		assertTrue (pnf.contains(pt4));
+		assertTrue ("ContainPoint: is not working", pnf.contains(pt0));
+		assertTrue ("ContainPoint: is not working", pnf.contains(pt1));
+		assertTrue ("ContainPoint: is not working", pnf.contains(pt2));
+		assertTrue ("ContainPoint: is not working", pnf.contains(pt3));
+		assertTrue ("ContainPoint: is not working", pnf.contains(pt4));
 		
-		assertFalse(pnf.contains(ptnot));
-		assertFalse(pnf.contains(ptnot2));
+		assertFalse("ContainPoint: is always working", pnf.contains(ptnot));
+		assertFalse("ContainPoint: is always working", pnf.contains(ptnot2));
 	}
 
 	@Test
@@ -210,15 +213,15 @@ class TestPointNamingFactory extends PointNamingFactory{
 		
 		Set<Point> ptSet=pnf.getAllPoints();
 		
-		assertEquals(pnf.size(), ptSet.size());
-		assertTrue(ptSet.contains(pt0));
-		assertTrue(ptSet.contains(pt1));
-		assertTrue(ptSet.contains(pt2));
-		assertTrue(ptSet.contains(pt3));
-		assertTrue(ptSet.contains(pt4));
+		assertEquals("GetAllPoints: size is not accurate", pnf.size(), ptSet.size());
+		assertTrue("GetAllPoints: doesn't work", ptSet.contains(pt0));
+		assertTrue("GetAllPoints: doesn't work", ptSet.contains(pt1));
+		assertTrue("GetAllPoints: doesn't work", ptSet.contains(pt2));
+		assertTrue("GetAllPoints: doesn't work", ptSet.contains(pt3));
+		assertTrue("GetAllPoints: doesn't work", ptSet.contains(pt4));
 		
-		assertFalse(ptSet.contains(ptnot));
-		assertFalse(ptSet.contains(ptnot2));
+		assertFalse("GetAllPoints: always works", ptSet.contains(ptnot));
+		assertFalse("GetAllPoints: always works",ptSet.contains(ptnot2));
 		
 		
 	}
@@ -229,14 +232,14 @@ class TestPointNamingFactory extends PointNamingFactory{
 		
 		Point pt0=new Point("A", 0,0);
 		
-		assertEquals (5, pnf.size());
+		assertEquals ("Clear: size doesn't work", 5, pnf.size());
 		pnf.clear();
-		assertEquals(0, pnf.size());
+		assertEquals("Clear: clear doesn't work", 0, pnf.size());
 		pnf.clear();
-		assertEquals(0, pnf.size());
+		assertEquals("Clear: double clear doesn't work", 0, pnf.size());
 		pnf.put(pt0);
 		pnf.put(2, 0);
-		assertEquals(2, pnf.size());
+		assertEquals("Clear: put after clear doesn't work", 2, pnf.size());
 		
 	}
 
@@ -250,33 +253,33 @@ class TestPointNamingFactory extends PointNamingFactory{
 		Point pt4=new Point(Math.sqrt(2),-3);
 		
 		pnf.put(pt0);
-		assertEquals(1, pnf.size());
+		assertEquals("Size: doesn't work", 1, pnf.size());
 		
 		pnf.put(pt1);
-		assertEquals(2, pnf.size());
+		assertEquals("Size: doesn't work", 2, pnf.size());
 		
 		pnf.put(pt2);
-		assertEquals(3, pnf.size());
+		assertEquals("Size: doesn't work", 3, pnf.size());
 		
 		pnf.put(pt3);
-		assertEquals(4, pnf.size());
+		assertEquals("Size: doesn't work", 4, pnf.size());
 		
 		pnf.put(pt4);
-		assertEquals(5, pnf.size());
+		assertEquals("Size: doesn't work", 5, pnf.size());
 		
 		pnf.put(pt1);
 		pnf.put(pt0);
-		assertEquals(5, pnf.size());
+		assertEquals("Size: doesn't work", 5, pnf.size());
 		
 		pnf.put("D", 78, 9);
 		pnf.put(78, 9);
-		assertEquals(6, pnf.size());
+		assertEquals("Size: doesn't work", 6, pnf.size());
 		
 		pnf.clear();
-		assertEquals(0, pnf.size());
+		assertEquals("Size: doesn't work", 0, pnf.size());
 		
 		pnf.put(65,7);
-		assertEquals(1, pnf.size());
+		assertEquals("Size: doesn't work", 1, pnf.size());
 		
 		
 	}
@@ -294,7 +297,7 @@ class TestPointNamingFactory extends PointNamingFactory{
 		pnf.put(pt2);
 		pnf.put(pt3);
 		
-		assertEquals ("A(0.0, 0.0) *_A(583.0, -3.0) *_B(-76.3542, 9.0) C(-48.51, -9.637) ", pnf.toString());
+		assertEquals ("toString: doesn't work", "A(0.0, 0.0) *_A(583.0, -3.0) *_B(-76.3542, 9.0) C(-48.51, -9.637) ", pnf.toString());
 
 	}
 
