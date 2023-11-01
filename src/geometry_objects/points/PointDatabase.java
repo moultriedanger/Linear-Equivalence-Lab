@@ -73,13 +73,11 @@ public class PointDatabase
 	 */
 	public Point getPoint(String name)
 	{
-
-		if (name == null) return null;
 		
         Set<Point> pointSet = _factory.getAllPoints();
         
         for(Point p: pointSet) {
-        	if(name == p.getName()) {
+        	if(name.equals(p.getName())) {
         		return p;
         	}
         }

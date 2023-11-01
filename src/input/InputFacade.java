@@ -1,7 +1,7 @@
 /**
 * provides a simple way to extract figure and create a dictionary of PointDatabases and Segments
 *
-* @author Moultrie Dangerfield, Jaylen Livingston, and Jack Patteson
+* @author Moultrie Dangerfield, Jalen Livingston, and Jack Patteson
 * @date 10/31/23
 */
 package input;

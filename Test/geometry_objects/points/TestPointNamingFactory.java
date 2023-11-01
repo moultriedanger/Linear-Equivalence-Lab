@@ -9,6 +9,12 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+/*
+* Tests the PointNamingFactory
+*
+* @author Jalen Livingston, Moultrie DangerField, and Jack Patterson
+* @date 10/29/2023
+*/
 class TestPointNamingFactory extends PointNamingFactory{
 
 	

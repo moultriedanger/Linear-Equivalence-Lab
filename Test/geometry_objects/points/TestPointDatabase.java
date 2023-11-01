@@ -8,6 +8,14 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+/*
+* Tests the pointDatabase
+*
+* @author Jalen Livingston, Moultrie DangerField, and Jack Patterson
+* @date 11/1/2023
+* 
+*/
+
 class TestPointDatabase extends PointDatabase {
 
 	 public PointDatabase build()
@@ -55,43 +63,6 @@ class TestPointDatabase extends PointDatabase {
 	
 	}
 
-//	@Test
-//	void testPointDatabase() {
-//		
-//		PointDatabase pd = build();
-//		
-//	}
-//
-//	@Test
-//	void testPointDatabaseListOfPoint() {
-//		PointDatabase pd = build();
-//		
-//		Point pt0 = new Point("A", 0,0);
-//		Point pt1 = new Point(1,0);
-//		Point pt2 = new Point("B", 78.237828,4);
-//		Point pt3 = new Point(89,-28.7897);
-//		Point pt4 = new Point(Math.sqrt(2),-3);
-//		Point pt5 = new Point("C", -51.5432,15.0000);
-//		
-//		assertTrue (pd.contains(pt0));
-//		assertTrue (pd.contains(pt1));
-//		assertTrue (pd.contains(pt2));
-//		assertTrue (pd.contains(pt3));
-//		assertTrue (pd.contains(pt4));
-//		
-//		assertEquals (6, pd.size());
-//		
-////		assertTrue (pd.contains(0, 0));
-////		assertTrue (pd.contains(Math.sqrt(2), -3));
-////		assertFalse (pd.contains(0, 1));
-//		
-////		assertEquals ("A", pd.get(pt0).getName());
-////		assertEquals ("*_A", pd.get(pt1).getName());
-////		assertEquals ("B", pd.get(pt2).getName());
-////		assertEquals ("*_B", pd.get(pt3).getName());
-////		assertEquals ("*_C", pd.get(pt4).getName());
-//	}
-//
 	@Test
 	void testSize() {
 		PointDatabase pd = build();
@@ -105,10 +76,10 @@ class TestPointDatabase extends PointDatabase {
 		
 		pd.put("A", 0,0);
 		pd.put("B", 1,0);
-		pd.put(null, 51, 51);
+		pd.put("*_A", 51, 51);
 		pd.put("C", 78.237828,4);
 		pd.put("D", 89,-28.7897);
-		pd.put("_*E", Math.sqrt(2),-3);
+		pd.put("*_B", Math.sqrt(2),-3);
 		
 		assertEquals (6, pd.size());
 
@@ -116,23 +87,72 @@ class TestPointDatabase extends PointDatabase {
 
 	@Test
 	void testGetNamePoint() {
-
+		PointDatabase pd = build();
 		
+		Point pt0 = new Point(Math.sqrt(2),-3);
+		Point pt1 = new Point("C", -51.5432,15.0000);
+		
+		pd.getName(pt0);
+		pd.getName(pt1);
+		
+		assertEquals("*_C", pd.getName(pt0));
+		assertEquals("C", pd.getName(pt1));
 	}
-//
-//	@Test
-//	void testGetPointString() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	void testGetPointPoint() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	void testGetPointDoubleDouble() {
-//		fail("Not yet implemented");
-//	}
-//
+
+	@Test
+	void testGetPointString() {
+		PointDatabase pd = build();
+		
+		Point pt0 = new Point("A", 0,0);
+		Point pt1 = new Point(1,0);
+		Point pt2 = new Point("B", 78.237828,4);
+		Point pt3 = new Point(89,-28.7897);
+		Point pt4 = new Point(Math.sqrt(2),-3);
+		Point pt5 = new Point("C", -51.5432,15.0000);
+		assertEquals (pt0, pd.getPoint("A"));
+		assertEquals (pt1, pd.getPoint("*_A"));
+		assertEquals (pt2, pd.getPoint("B"));
+		assertEquals (pt3, pd.getPoint("*_B"));
+		assertEquals (pt4, pd.getPoint("*_C"));
+		assertEquals (pt5, pd.getPoint("C"));
+	}
+
+	@Test
+	void testGetPointPoint() {
+		PointDatabase pd = build();
+		
+		Point pt0=new Point("A", 0,0);
+		Point pt1=new Point(1,0);
+		Point pt2=new Point("B", 78.237828,4);
+		Point pt3=new Point(89,-28.7897);
+		Point pt4=new Point(Math.sqrt(2),-3);
+		Point pt5=new Point("C", -51.5432,15.0000);
+		
+		assertEquals (pt0, pd.getPoint(pt0));
+		assertEquals (pt1, pd.getPoint(pt1));
+		assertEquals (pt2, pd.getPoint(pt2));
+		assertEquals (pt3, pd.getPoint(pt3));
+		assertEquals (pt4, pd.getPoint(pt4));
+		assertEquals (pt5, pd.getPoint(pt5));
+	}
+
+	@Test
+	void testGetPointDoubleDouble() {
+		PointDatabase pd = build();
+		
+		Point pt0=new Point("A", 0,0);
+		Point pt1=new Point(1,0);
+		Point pt2=new Point("B", 78.237828,4);
+		Point pt3=new Point(89,-28.7897);
+		Point pt4=new Point(Math.sqrt(2),-3);
+		Point pt5=new Point("C", -51.5432,15.0000);
+		
+		assertEquals (pt0, pd.getPoint(0,0));
+		assertEquals (pt1, pd.getPoint(1,0));
+		assertEquals (pt2, pd.getPoint(78.237828,4));
+		assertEquals (pt3, pd.getPoint(89,-28.7897));
+		assertEquals (pt4, pd.getPoint(Math.sqrt(2),-3));
+		assertEquals (pt5, pd.getPoint(-51.5432,15.0000));
+	}
+
 }

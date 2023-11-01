@@ -10,7 +10,12 @@ import org.junit.jupiter.api.Test;
 import geometry_objects.Segment;
 import input.InputFacade;
 import input.components.FigureNode;
-
+/*
+* Tests the InputFacade
+*
+* @author Moultrie DangerField, Jalen Livingston, and Jack Patterson
+* @date 11/1/2023
+*/
 class TestInputFacade{
 
 	@Test
