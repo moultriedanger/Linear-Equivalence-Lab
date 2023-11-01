@@ -15,7 +15,7 @@ class TestPointNamingFactory extends PointNamingFactory{
 	 public PointNamingFactory build()
 	 {
 		 	//builds a list a PointNamingFactory
-			List ptList=new ArrayList<Point>();
+			List<Point> ptList=new ArrayList<Point>();
 			Point pt0=new Point("A", 0,0);
 			Point pt1=new Point(1,0);
 			Point pt2=new Point("B", 78.237828,4);
