@@ -14,12 +14,14 @@ class TestPointNamingFactory extends PointNamingFactory{
 	
 	 public PointNamingFactory build()
 	 {
+		 	//builds a list a PointNamingFactory
 			List ptList=new ArrayList<Point>();
 			Point pt0=new Point("A", 0,0);
 			Point pt1=new Point(1,0);
 			Point pt2=new Point("B", 78.237828,4);
 			Point pt3=new Point(89,-28.7897);
 			Point pt4=new Point(Math.sqrt(2),-3);
+			
 			ptList.add(pt0);
 			ptList.add(pt1);
 			ptList.add(pt2);
@@ -45,16 +47,20 @@ class TestPointNamingFactory extends PointNamingFactory{
 		assertTrue (pnf.contains(pt2));
 		assertTrue (pnf.contains(pt3));
 		assertTrue (pnf.contains(pt4));
+		
 		assertEquals (5, pnf.size());
-		assertFalse (pnf.contains(ptnot));
+		
 		assertTrue (pnf.contains(0, 0));
 		assertTrue (pnf.contains(Math.sqrt(2), -3));
 		assertFalse (pnf.contains(0, 1));
+		
 		assertEquals ("A", pnf.get(pt0).getName());
 		assertEquals ("*_A", pnf.get(pt1).getName());
 		assertEquals ("B", pnf.get(pt2).getName());
 		assertEquals ("*_B", pnf.get(pt3).getName());
 		assertEquals ("*_C", pnf.get(pt4).getName());
+		
+		assertFalse (pnf.contains(ptnot));
 	}
 
 	@Test
@@ -77,11 +83,13 @@ class TestPointNamingFactory extends PointNamingFactory{
 		assertTrue (pnf.contains(pt2));
 		assertTrue (pnf.contains(pt3));
 		assertTrue (pnf.contains(pt4));
+		
 		assertEquals (5, pnf.size());
-		assertFalse (pnf.contains(ptnot));
 		assertTrue (pnf.contains(0, 0));
 		assertTrue (pnf.contains(Math.sqrt(2), -3));
 		assertFalse (pnf.contains(0, 1));
+		
+		assertFalse (pnf.contains(ptnot));
 	}
 
 	@Test
@@ -94,15 +102,17 @@ class TestPointNamingFactory extends PointNamingFactory{
 		
 		
 		assertTrue (pnf.contains(0, 0));
-		assertEquals ("C", pnf.get(0, 0).getName());
 		assertTrue (pnf.contains(Math.sqrt(2),-98));
-		assertEquals ("*_A", pnf.get(Math.sqrt(2),-98).getName());
 		assertTrue (pnf.contains(-6, -7));
-		assertEquals ("A", pnf.get(-6,-7).getName());
 		assertTrue (pnf.contains(67,8));
+		
+		assertEquals ("C", pnf.get(0, 0).getName());
+		assertEquals ("*_A", pnf.get(Math.sqrt(2),-98).getName());
+		assertEquals ("A", pnf.get(-6,-7).getName());
 		assertEquals ("*_B", pnf.get(67, 8).getName());
-		assertFalse (pnf.contains(5,5));
 		assertEquals (4, pnf.size());
+		
+		assertFalse (pnf.contains(5,5));
 		assertFalse (pnf.contains(0, 1));
 		
 	}
@@ -193,12 +203,14 @@ class TestPointNamingFactory extends PointNamingFactory{
 		assertEquals (5, pnf.size());
 		
 		Set<Point> ptSet=pnf.getAllPoints();
+		
 		assertEquals(pnf.size(), ptSet.size());
 		assertTrue(ptSet.contains(pt0));
 		assertTrue(ptSet.contains(pt1));
 		assertTrue(ptSet.contains(pt2));
 		assertTrue(ptSet.contains(pt3));
 		assertTrue(ptSet.contains(pt4));
+		
 		assertFalse(ptSet.contains(ptnot));
 		assertFalse(ptSet.contains(ptnot2));
 		
@@ -233,22 +245,30 @@ class TestPointNamingFactory extends PointNamingFactory{
 		
 		pnf.put(pt0);
 		assertEquals(1, pnf.size());
+		
 		pnf.put(pt1);
 		assertEquals(2, pnf.size());
+		
 		pnf.put(pt2);
 		assertEquals(3, pnf.size());
+		
 		pnf.put(pt3);
 		assertEquals(4, pnf.size());
+		
 		pnf.put(pt4);
 		assertEquals(5, pnf.size());
+		
 		pnf.put(pt1);
 		pnf.put(pt0);
 		assertEquals(5, pnf.size());
+		
 		pnf.put("D", 78, 9);
 		pnf.put(78, 9);
 		assertEquals(6, pnf.size());
+		
 		pnf.clear();
 		assertEquals(0, pnf.size());
+		
 		pnf.put(65,7);
 		assertEquals(1, pnf.size());
 		

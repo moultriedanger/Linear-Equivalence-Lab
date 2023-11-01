@@ -1,3 +1,9 @@
+/**
+* provides a simple way to extract figure and create a dictionary of PointDatabases and Segments
+*
+* @author Moultrie Dangerfield, Jaylen Livingston, and Jack Patteson
+* @date 10/31/23
+*/
 package input;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,7 +13,6 @@ import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -17,14 +22,11 @@ import geometry_objects.points.Point;
 import geometry_objects.points.PointDatabase;
 import geometry_objects.Segment;
 import input.builder.GeometryBuilder;
-import input.components.ComponentNode;
 import input.components.FigureNode;
 import input.components.PointNodeDatabase;
 import input.components.SegmentNodeDatabase;
 import input.components.PointNode;
-import input.components.SegmentNode;
 import input.parser.JSONParser;
-import utilities.io.StringUtilities;
 
 public class InputFacade
 {
@@ -59,42 +61,51 @@ public class InputFacade
 	 */
 	public static Map.Entry<PointDatabase, Set<Segment>> toGeometryRepresentation(FigureNode fig)
 	{
+		//gets pnd and snd so the PointDatabase and segment Set can be made
 		PointNodeDatabase pnd=fig.getPointsDatabase();
 		SegmentNodeDatabase snd=fig.getSegments();
 		
 		PointDatabase pd=getPointDatabase(pnd);
 		Set<Segment> segSet=getSegments(snd, pd);
 		
+		//creates a simple entry of a map to be returned
 		SimpleEntry<PointDatabase, Set<Segment>> geoMap= new AbstractMap.SimpleEntry<>(pd, segSet);
 		
 		return geoMap;
 	}
 
+	/**
+	 * @param the PointNode database from figure, which contains all the pointNodes and thus points
+	 * @return A pointDatabase based on the points that were in the PointNodeDatabase
+	 */
     private static PointDatabase getPointDatabase(PointNodeDatabase pnd){
-    	
-    	LinkedHashSet<PointNode> ptSet = pnd.getPoints();
+    	//gets list of pointNodes and converts them to a list of Points
+    	LinkedHashSet<PointNode> lhs=pnd.getPoints();
     	List<Point> ptList=new ArrayList<Point>();
-    	
-    	for (PointNode pndPT: ptSet) {
-    		Point pt = new Point(pndPT.getName(), pndPT.getX(), pndPT.getY());
+    	for (PointNode pndPT: lhs) {
+    		Point pt=new Point(pndPT.getName(), pndPT.getX(), pndPT.getY());
     		ptList.add(pt);
     	}
+    	//constructs a pointDatabase based on the list of Points
     	return new PointDatabase(ptList);
     }
-    
-    
+    /**
+	 * @param the PointNode database from figure, which contains all the pointNodes and thus points
+	 * @param the SegmentNode database from figure, which contains all the segmentNodes and thus segments
+	 * @return A set of Segments based on the segments that were in the SegmentNodeDatabase
+	 */
     private static Set<Segment> getSegments(SegmentNodeDatabase snd, PointDatabase pd){
-    	
-    	HashMap<PointNode, LinkedHashSet<PointNode>> adjList = snd.getadjList();
+    	//gets the list of segments from the SND and then makes it iterable
+    	HashMap<PointNode, LinkedHashSet<PointNode>> adjList=snd.getadjList();
 		Set<PointNode> setKey = adjList.keySet();
-		Set<Segment> segSet = new LinkedHashSet<>();
-		List<PointNode> ptList = new ArrayList<PointNode>(setKey);
-		
-		for(PointNode pn1: ptList) {
+		Set<Segment> segSet= new LinkedHashSet<>();
+		//iterates over the keys of the segments turning PointNodes into Points
+		for(PointNode pn1: setKey) {
 			Point pt1=pd.getPoint(pn1.getX(), pn1.getY());
-			
+			//iterates through associated PointNodes of pn1, changing them to Points
 			for (PointNode pn2: (adjList.get(pn1))){
 				Point pt2=pd.getPoint(pn2.getX(), pn2.getY());
+				//makes segments and adds points to the segments set
 				Segment seg=new Segment(pt1, pt2);
 				segSet.add(seg);
 			}

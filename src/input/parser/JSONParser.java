@@ -15,6 +15,12 @@ public class JSONParser
 	protected ComponentNode  _astRoot;
 	protected DefaultBuilder _builder;
 
+//	public JSONParser()
+//	{
+//		_astRoot = null;
+//		_builder = null;
+//	}
+	
 	public JSONParser(DefaultBuilder builder)
 	{
 		_astRoot = null;
@@ -29,6 +35,9 @@ public class JSONParser
 
 	public ComponentNode parse(String str) throws ParseException
 	{
+//		if(_builder==null) {
+//			_builder.buildFigureNode(null, null, null);
+//		}
 		// Parsing is accomplished via the JSONTokenizer class.
 		JSONTokener tokenizer = new JSONTokener(str);
 		JSONObject  JSONFigure = (JSONObject)tokenizer.nextValue();

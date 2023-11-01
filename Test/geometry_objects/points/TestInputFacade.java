@@ -2,7 +2,6 @@ package geometry_objects.points;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.AbstractMap;
 import java.util.Set;
 import java.util.AbstractMap.SimpleEntry;
 
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import geometry_objects.Segment;
 import input.InputFacade;
 import input.components.FigureNode;
-import input.visitor.UnparseVisitor;
 
 class TestInputFacade{
 
@@ -96,6 +94,7 @@ class TestInputFacade{
 		
 		assertFalse (segSet.contains(af));
 		assertFalse (segSet.contains(cf));
+		
 	}
 
 	@Test
@@ -151,6 +150,7 @@ class TestInputFacade{
 		
 		
 		assertFalse (segSet.contains(dummy_b));
+		
 	}
 //	@Test
 //	public void testFullyConnectedIrregularPolygon() {
